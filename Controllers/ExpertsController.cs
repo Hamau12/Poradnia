@@ -1,12 +1,15 @@
 ﻿using AutoMapper;
+
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+
 using SRP.interfaces;
 using SRP.Interfaces;
 using SRP.Models;
 using SRP.Models.DTOs;
 using SRP.Models.Enties;
+
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -34,7 +37,7 @@ namespace SRP.Controllers
         public async Task<IActionResult> GetAllDoctor()
         {
             var doctors = _doctorRepository.GetAll().ToList();
-            return View("DisplayDoctor",_mapper.Map<IList<DoctorDTO>>(doctors));
+            return View("DisplayDoctor", _mapper.Map<IList<DoctorDTO>>(doctors));
         }
         [Authorize(Roles = "Admin, SuperAdmin, Doctor")]
         public async Task<IActionResult> Index()
@@ -55,36 +58,48 @@ namespace SRP.Controllers
         {
             if (formFile != null && (Path.GetExtension(formFile.FileName) == ".png" || Path.GetExtension(formFile.FileName) == ".jpg") || Path.GetExtension(formFile.FileName) == ".jpeg") ;
             {
-                var fileName = ContentDispositionHeaderValue.Parse(formFile.ContentDisposition).FileName;
-
-                var name = RenameFile(fileName, newDoctor.Id);
-                var mainPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "Images");
+                var name = RenameFile(formFile.FileName, newDoctor.Id);
+                var mainPath = Path.Combine("wwwroot", "PImage");
                 var filePath = Path.Combine(mainPath, name);
 
                 if (!Directory.Exists(mainPath))
                 {
                     Directory.CreateDirectory(mainPath);
                 }
-                await using (Stream stream = new FileStream(mainPath, FileMode.Create))
+                await using (Stream stream = new FileStream(filePath, FileMode.Create))
                 {
                     await formFile.CopyToAsync(stream);
                 }
                 var user = await _userRepository.FindByIncludeAsync(x => x.Id == newDoctor.Id);
                 var doctor = new Doctor
                 {
-                    Id = user.Id,
-                    FirstName= user.FirstName,
+                    User = user,
+                    FirstName = user.FirstName,
                     LastName = user.LastName,
                     Description = newDoctor.Description,
                     ImageName = name,
                     Specialisation = newDoctor.Specialisation,
                     Created = DateTime.Now,
                     CreatedBy = _currentUserService.UserId
-                };  
-                _doctorRepository.UpdateAsync(doctor);
-                return View("DisplayDoctor");
-            }
+                };
 
+                await _doctorRepository.AddAsync(doctor);
+                user.IsDoctor = true;
+                await _userRepository.UpdateAsync(user);
+
+            }
+            return RedirectToAction("Index");
+        }
+        [Authorize(Roles = "Admin, SuperAdmin, Doctor")]
+        [HttpPost]
+        public async Task<IActionResult> UnPuplishDoctor(Doctor Doctor)
+        {
+            var user = await _userRepository.FindByIncludeAsync(x => x.Id == Doctor.Id);
+                var doctor = await _doctorRepository.FindByIncludeAsync(x => x.User == user);
+                await _doctorRepository.DeleteAsync(doctor);
+                user.IsDoctor = false;
+                await _userRepository.UpdateAsync(user);
+                return RedirectToAction("Index");
         }
         private string RenameFile(string fileName, Guid Id)
         {

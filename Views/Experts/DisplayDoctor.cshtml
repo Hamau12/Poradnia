@@ -16,7 +16,7 @@
                     <div class="body">
                         <div class="row">
                             <div class="col-lg-4 col-md-4 col-12">
-                                <div class="profile-image float-md-right"> <img src="~/ProfailImages/@doctor.ImageName" alt=""> </div>
+                                <div class="profile-image float-md-right"> <img src="~/PImage/@doctor.ImageName" alt="@doctor.FirstName"> </div>
                             </div>
                             <div class="col-lg-8 col-md-8 col-12">
                                 <h4 class="m-t-0 m-b-0"><strong>@doctor.FirstName</strong> @doctor.LastName</h4>
@@ -26,7 +26,7 @@
                                     <button class="btn btn-primary btn-round">Follow</button>
                                     <button class="btn btn-primary btn-round btn-simple">Message</button>
                                 </div>
-@*                                <p class="social-icon m-t-5 m-b-0">
+                                @*                                <p class="social-icon m-t-5 m-b-0">
                                     <a title="Twitter" href="javascript:void(0);"><i class="fa fa-twitter"></i></a>
                                     <a title="Facebook" href="javascript:void(0);"><i class="fa fa-facebook"></i></a>
                                     <a title="Google-plus" href="javascript:void(0);"><i class="fa fa-twitter"></i></a>
@@ -39,3 +39,9 @@
                 </div>
             </div>
         }
+    </div>
+    @if (User.IsInRole("Admin") || User.IsInRole("SuperAdmin") || User.IsInRole("Doctor"))
+    {
+        <a class="btn btn-outline-warning" asp-controller="Experts" asp-action="Index">Użytkownicy</a>
+    }
+</div>

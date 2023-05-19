@@ -13,13 +13,13 @@ namespace SRP.Controllers
 
     //    }
     //    //[HttpPost]
-    //    [Authorize(Roles = "Admin, SuperAdmin, Doctor")]
+    //    [Authorize(User = "Admin, SuperAdmin, Doctor")]
     //    public IActionResult CreateEvent()
     //    {
     //        return View("Create");
     //    }
     //    [HttpPost]
-    //    [Authorize(Roles = "Admin, SuperAdmin, Doctor")]
+    //    [Authorize(User = "Admin, SuperAdmin, Doctor")]
     //    public async Task<IActionResult> CreateEvent(EventDto eventDto)
     //    {
     //        if (eventDto == null)

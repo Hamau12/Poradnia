@@ -48,7 +48,7 @@
                                         <a class="dropdown-item" asp-controller="Experts" asp-action="PuplishDoctor" asp-route-id="@userDto.Id">Opublikuj lekarza</a>
                                         break;
                                     case true:
-                                        <a class="dropdown-item" asp-controller="Experts" asp-action="RemoveDoctor" asp-route-id="@userDto.Id">Usuń lekarza</a>
+                                        <a class="dropdown-item" asp-controller="Experts" asp-action="UnPuplishDoctor" asp-route-id="@userDto.Id">Usuń lekarza</a>
                                         break;
                                 }
                             </li>

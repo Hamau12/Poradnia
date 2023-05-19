@@ -13,7 +13,7 @@ namespace SRP.Models
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public bool IsDoctor { get; set; } = false;
-        public Doctor Doctor { get; set; }
+        public ICollection<Doctor> Doctor { get; set; }
         public ICollection<IdentityUserClaim<Guid>> Claims { get; set; }
         public ICollection<SRPUserRole> UserRoles { get; set; }
     }
