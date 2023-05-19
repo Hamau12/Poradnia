@@ -14,7 +14,6 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Net.Http.Headers;
 using System.Threading.Tasks;
 
 namespace SRP.Controllers
@@ -91,15 +90,17 @@ namespace SRP.Controllers
             return RedirectToAction("Index");
         }
         [Authorize(Roles = "Admin, SuperAdmin, Doctor")]
-        [HttpPost]
         public async Task<IActionResult> UnPuplishDoctor(Doctor Doctor)
         {
             var user = await _userRepository.FindByIncludeAsync(x => x.Id == Doctor.Id);
-                var doctor = await _doctorRepository.FindByIncludeAsync(x => x.User == user);
-                await _doctorRepository.DeleteAsync(doctor);
-                user.IsDoctor = false;
-                await _userRepository.UpdateAsync(user);
-                return RedirectToAction("Index");
+            var doctor = await _doctorRepository.FindByIncludeAsync(x => x.User == user);
+            var mainPath = Path.Combine("wwwroot", "PImage");
+            var filePath = Path.Combine(mainPath, doctor.ImageName);
+            System.IO.File.Delete(filePath);
+            await _doctorRepository.DeleteAsync(doctor);
+            user.IsDoctor = false;
+            await _userRepository.UpdateAsync(user);
+            return RedirectToAction("Index");
         }
         private string RenameFile(string fileName, Guid Id)
         {

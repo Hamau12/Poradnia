@@ -34,9 +34,13 @@
                                     <a class="dropdown-item  btn btn-outline-warning" asp-controller="Reports" asp-action="List">Przeglądaj</a>
                                 </div>
                             </div>
-                            @if (User.IsInRole("Admin") || User.IsInRole("SuperAdmin") || User.IsInRole("Doctor"))
+                            @if (User.IsInRole("Admin") || User.IsInRole("SuperAdmin"))
                             {
                                 <a class="btn btn-outline-warning" asp-controller="Users" asp-action="Index">Użytkownicy</a>
+                            }
+                            @if (User.IsInRole("Doctor"))
+                            {
+                                <a class="btn btn-outline-warning" asp-controller="WorkSchedule" asp-action="Index">Panel lekarza</a>
                             }
                         </li>
                     </ul>
