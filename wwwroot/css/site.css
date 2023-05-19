@@ -1,0 +1,145 @@
+﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
+for details on configuring this project to bundle and minify static web assets. */
+
+a.navbar-brand {
+  white-space: normal;
+  text-align: center;
+  word-break: break-all;
+}
+
+/* Provide sufficient contrast against white background */
+a {
+  color: #0366d6;
+}
+
+.btn-primary {
+  color: #fff;
+  background-color: #1b6ec2;
+  border-color: #1861ac;
+}
+
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+  color: #fff;
+  background-color: #1b6ec2;
+  border-color: #1861ac;
+}
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+  font-size: 14px;
+}
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.border-top {
+  border-top: 1px solid #e5e5e5;
+}
+.border-bottom {
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.box-shadow {
+  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+}
+
+button.accept-policy {
+  font-size: 1rem;
+  line-height: inherit;
+}
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: 60px;
+}
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  white-space: nowrap;
+  line-height: 60px; /* Vertically center the text there */
+}
+body {
+    margin-top: 20px;
+    background: #eee;
+}
+
+a {
+    color: #f96332;
+}
+
+.m-t-5 {
+    margin-top: 5px;
+}
+
+.card {
+    background: #fff;
+    margin-bottom: 30px;
+    transition: .5s;
+    border: 0;
+    border-radius: .1875rem;
+    display: inline-block;
+    position: relative;
+    width: 100%;
+    box-shadow: none;
+}
+
+    .card .body {
+        font-size: 14px;
+        color: #424242;
+        padding: 20px;
+        font-weight: 400;
+    }
+
+.profile-page .profile-header {
+    position: relative
+}
+
+    .profile-page .profile-header .profile-image img {
+        border-radius: 50%;
+        width: 140px;
+        border: 3px solid #fff;
+        box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23)
+    }
+
+    .profile-page .profile-header .social-icon a {
+        margin: 0 5px
+    }
+
+.profile-page .profile-sub-header {
+    min-height: 60px;
+    width: 100%
+}
+
+    .profile-page .profile-sub-header ul.box-list {
+        display: inline-table;
+        table-layout: fixed;
+        width: 100%;
+        background: #eee
+    }
+
+        .profile-page .profile-sub-header ul.box-list li {
+            border-right: 1px solid #e0e0e0;
+            display: table-cell;
+            list-style: none
+        }
+
+            .profile-page .profile-sub-header ul.box-list li:last-child {
+                border-right: none
+            }
+
+            .profile-page .profile-sub-header ul.box-list li a {
+                display: block;
+                padding: 15px 0;
+                color: #424242
+            }

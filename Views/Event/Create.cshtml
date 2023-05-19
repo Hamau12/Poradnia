@@ -1,0 +1,48 @@
+﻿@using Microsoft.AspNetCore.Identity;
+@using SRP.Models.Enties;
+@inject UserManager<SRPUser> UserManager
+@model Events
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>Dodaj Event</h2>
+<form asp-controller="Events" asp-action="CreateEvent" method="post">
+    <div class="col-xl-4 col">
+        <div class="form-group">
+            <label asp-for="Status" class="form-label"></label>
+            <select class="form-select" asp-for="Status" asp-items="Html.GetEnumSelectList<SRP.Models.Enties.Status>()">
+                <option disabled selected>Wybierz...</option>
+            </select>
+            <span asp-validation-for="Status" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Title">Tytuł</label>
+            <input asp-for="Title" class="form-control" />
+            <span asp-validation-for="Title" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Author">Prowadzący</label>
+            <input asp-for="Author" class="form-control" />
+            <span asp-validation-for="Author" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="PeopleCount">Maksymalna liczba uczestników</label>
+            <input asp-for="PeopleCount" class="form-control" />
+            <span asp-validation-for="PeopleCount" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Price">Cena biletu</label>
+            <input asp-for="Price" class="form-control" />
+            <span asp-validation-for="Price" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label asp-for="Description" class="form-label">Opis wydarzenia</label>
+        <textarea asp-for="Description" class="form-control" rows="8"></textarea>
+        <span asp-validation-for="Description" class="text-danger"></span>
+    </div>
+    <div>
+        <input type="submit" class="btn btn-warning" value="Utwórz" />
+    </div>
+    </div>
+</form>

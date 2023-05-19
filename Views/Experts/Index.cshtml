@@ -1,0 +1,71 @@
+﻿@model IList<SRP.Models.DTOs.SRPUserDTO>
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<table class="table table-responsive mb-7">
+    <thead>
+        <tr>
+            <th scope="col">Status</th>
+            <th scope="col">Imię</th>
+            <th scope="col">Nazwisko</th>
+            <th scope="col">Email</th>
+            <th scope="col">Akcje</th>
+        </tr>
+    </thead>
+    <tbody class="elements">
+        @foreach (var userDto in Model)
+        {
+            string statusClass;
+            string statusLabel;
+            switch (@userDto.IsDoctor)
+            {
+                case true:
+                    statusClass = "success";
+                    statusLabel = "Aktywny";
+                    break;
+                case false:
+                    statusClass = "danger";
+                    statusLabel = "Zablokowany";
+                    break;
+            }
+            <tr>
+                <td>
+                    <span class="badge bg-@statusClass">@statusLabel</span>
+                </td>
+                <td>@userDto.FirstName</td>
+                <td>@userDto.LastName</td>
+                <td>@userDto.Email</td>
+                <td>
+                    <div class="btn-group btn-profil">
+                        <button type="button" class="btn btn-outline-warning dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Akcja</button>
+                        <div class="dropdown-menu">
+                            <li>
+                                @switch (userDto.IsDoctor)
+                                {
+                                    case false:
+                                        <a class="dropdown-item" asp-controller="Experts" asp-action="PuplishDoctor" asp-route-id="@userDto.Id">Opublikuj lekarza</a>
+                                        break;
+                                    case true:
+                                        <a class="dropdown-item" asp-controller="Experts" asp-action="RemoveDoctor" asp-route-id="@userDto.Id">Usuń lekarza</a>
+                                        break;
+                                }
+                            </li>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section Scripts
+    {
+    <script src="~/js/ManagerSearchBar.js" asp-append-version="true"></script>
+    <script>
+        $(document).ready(function () {
+            ManagerSearchBar.init();
+        });
+    </script>
+    }
