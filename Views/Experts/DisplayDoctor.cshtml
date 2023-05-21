@@ -24,7 +24,7 @@
                                 <p>@doctor.Description</p>
                                 <div>
                                     <button class="btn btn-primary btn-round">Poznaj</button>
-                                    <button class="btn btn-primary btn-round btn-simple">Umów wizytę</button>
+                                    <a href="~/Patient" class="btn btn-primary btn-round btn-simple"><span>Umów wizytę</span></a>
                                 </div>
                             </div>
                         </div>
@@ -33,8 +33,8 @@
             </div>
         }
     </div>
-    @if (User.IsInRole("Admin") || User.IsInRole("SuperAdmin") || User.IsInRole("Specialist"))
+    @if (User.IsInRole("Admin") || User.IsInRole("SuperAdmin"))
     {
-        <a class="btn btn-outline-warning" asp-controller="Experts" asp-action="Index">Użytkownicy</a>
+        <a class="btn btn-outline-warning" asp-controller="Experts" asp-action="Index">Zarządzaj specjalistami</a>
     }
 </div>
