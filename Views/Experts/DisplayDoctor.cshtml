@@ -1,6 +1,6 @@
 ﻿@using Microsoft.AspNetCore.Identity;
 @using SRP.Models.DTOs;
-@model IList<DoctorDTO>
+@model IList<SpecialistDTO>
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -33,7 +33,7 @@
             </div>
         }
     </div>
-    @if (User.IsInRole("Admin") || User.IsInRole("SuperAdmin") || User.IsInRole("Doctor"))
+    @if (User.IsInRole("Admin") || User.IsInRole("SuperAdmin") || User.IsInRole("Specialist"))
     {
         <a class="btn btn-outline-warning" asp-controller="Experts" asp-action="Index">Użytkownicy</a>
     }

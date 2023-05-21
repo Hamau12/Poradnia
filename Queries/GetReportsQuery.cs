@@ -29,7 +29,7 @@ namespace SRP.Queries
         }
         public async Task<IList<ReportDto>> Handle(GetReportsQuery request, CancellationToken cancellationToken)
         {
-            if (_currentUserService.IsAdmin || _currentUserService.Role== "SuperAdmin" || _currentUserService.Role == "Doctor")
+            if (_currentUserService.IsAdmin || _currentUserService.Role== "SuperAdmin" || _currentUserService.Role == "Specialist")
             {
                 var allReports = await _reportRepository.GetAllAsync();
                 return _mapper.Map<IList<ReportDto>>(allReports);

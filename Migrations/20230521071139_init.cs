@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace SRP.Migrations
+namespace Poradnia.Migrations
 {
     public partial class init : Migration
     {
@@ -74,7 +74,8 @@ namespace SRP.Migrations
                     LockoutEnd = table.Column<DateTimeOffset>(nullable: true),
                     LockoutEnabled = table.Column<bool>(nullable: false),
                     FirstName = table.Column<string>(nullable: true),
-                    LastName = table.Column<string>(nullable: true)
+                    LastName = table.Column<string>(nullable: true),
+                    IsDoctor = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -121,6 +122,31 @@ namespace SRP.Migrations
                         principalTable: "Roles",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Doctor",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(nullable: false),
+                    Created = table.Column<DateTime>(nullable: true),
+                    CreatedBy = table.Column<Guid>(nullable: true),
+                    FirstName = table.Column<string>(nullable: true),
+                    LastName = table.Column<string>(nullable: true),
+                    Description = table.Column<string>(nullable: true),
+                    Specialisation = table.Column<int>(nullable: false),
+                    ImageName = table.Column<string>(nullable: true),
+                    UserId = table.Column<Guid>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Doctor", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Doctor_Users_UserId",
+                        column: x => x.UserId,
+                        principalTable: "Users",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -213,26 +239,31 @@ namespace SRP.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { new Guid("2f709f09-bc6a-49ba-963b-e9111b2f750a"), "f244e856-ee76-4835-8272-d86ce18cba3b", "Admin", "ADMIN" },
-                    { new Guid("56d3ec27-354e-4ee2-88da-f313e5717cbe"), "d60e058b-e50b-417b-9740-9f68eb0354ce", "Doctor", "DOCTOR" },
-                    { new Guid("2641bfc2-29f9-46d7-bd20-064e4d4a2164"), "63bbeafc-d342-40e1-aca6-28e20904aa21", "Unconfirmed", "UNCONFIRMED" },
-                    { new Guid("ee21c181-29d9-48b2-85c8-aed8c7cdbd21"), "c12185a6-47ff-47ac-8d01-4271a268a5bd", "SuperAdmin", "SUPERADMIN" }
+                    { new Guid("709aa7ef-8c95-4b01-b8d5-ff5c7e856d6d"), "2affadb3-7cd5-462f-bd95-8c6880021984", "Admin", "ADMIN" },
+                    { new Guid("04c6ca88-691a-491e-ba33-b697113d8ce7"), "7dd42aac-132f-4f33-8949-035694f5df3e", "Specialist", "DOCTOR" },
+                    { new Guid("d5ab315e-ca58-4971-a901-e109146974b5"), "215bbd03-041c-4432-96eb-5654e5bebaa2", "Unconfirmed", "UNCONFIRMED" },
+                    { new Guid("c58e18ee-6905-4060-8826-4307c1128098"), "ab8f951e-d54c-4c51-8c27-d0e6ee173837", "SuperAdmin", "SUPERADMIN" }
                 });
 
             migrationBuilder.InsertData(
                 table: "Users",
-                columns: new[] { "Id", "ConcurrencyStamp", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "UserName" },
-                values: new object[] { new Guid("1e4af844-9bea-40a5-aec3-42c945e7d848"), "e49b78de-cdfc-4bcb-95b9-be35f06cb18a", "test@pl.pl", true, "Wojciech", "Nytko", false, null, "TEST@PL.PL", "TEST@PL.PL", "AQAAAAEAACcQAAAAEKK1k+9B2Dnk2TzggW/2JEGAiT4+TYfB7fM9Q9+cWRNv2vauukh7kiUR8poYLRSZAw==", null, true, "a2d4ab6d-d611-49e5-aa93-98bc7b074a1d", "TEST@PL.PL" });
+                columns: new[] { "Id", "ConcurrencyStamp", "Email", "EmailConfirmed", "FirstName", "IsDoctor", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "UserName" },
+                values: new object[] { new Guid("4992b705-1e36-4af6-a9bf-63abcb35e7b1"), "49bdd729-6bc0-41c5-a531-f999c211b977", "test@pl.pl", true, "Wojciech", false, "Nytko", false, null, "TEST@PL.PL", "TEST@PL.PL", "AQAAAAEAACcQAAAAEIT7Z+O8yPQszBqmT4xmjY0jKJsfYDn7t4i+pPeozu8NvrtTAhYXDMIPkPY51ViviA==", null, true, "8583100b-86c1-45c4-8485-fc676afaa46e", "TEST@PL.PL" });
 
             migrationBuilder.InsertData(
                 table: "UserRoles",
                 columns: new[] { "UserId", "RoleId" },
-                values: new object[] { new Guid("1e4af844-9bea-40a5-aec3-42c945e7d848"), new Guid("ee21c181-29d9-48b2-85c8-aed8c7cdbd21") });
+                values: new object[] { new Guid("4992b705-1e36-4af6-a9bf-63abcb35e7b1"), new Guid("c58e18ee-6905-4060-8826-4307c1128098") });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Comment_ReportId",
                 table: "Comment",
                 column: "ReportId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Doctor_UserId",
+                table: "Doctor",
+                column: "UserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_RoleClaims_RoleId",
@@ -281,6 +312,9 @@ namespace SRP.Migrations
 
             migrationBuilder.DropTable(
                 name: "Comment");
+
+            migrationBuilder.DropTable(
+                name: "Doctor");
 
             migrationBuilder.DropTable(
                 name: "RoleClaims");

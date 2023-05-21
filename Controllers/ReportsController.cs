@@ -41,7 +41,7 @@ namespace SRP.Controllers
                 var _reportRepository = scope.ServiceProvider.GetRequiredService<IAsyncRepository<Report>>();
                 var _userManager = scope.ServiceProvider.GetRequiredService<UserManager<SRPUser>>();
                 var user = _userManager.Users.FirstOrDefault(x => x.UserName == HttpContext.User.Identity.Name);
-                if (HttpContext.User.IsInRole("Admin")|| HttpContext.User.IsInRole("SuperAdmin")|| HttpContext.User.IsInRole("Doctor"))
+                if (HttpContext.User.IsInRole("Admin")|| HttpContext.User.IsInRole("SuperAdmin")|| HttpContext.User.IsInRole("Specialist"))
                 {
                     var allReports = await _reportRepository.GetAllAsync();
                     return View(_mapper.Map<IList<ReportDto>>(allReports));
@@ -144,7 +144,7 @@ namespace SRP.Controllers
         }
 
         [HttpPost]
-        [Authorize(Roles = "Admin, SuperAdmin, Doctor")]
+        [Authorize(Roles = "Admin, SuperAdmin, Specialist")]
         public async Task<IActionResult> Close([FromForm] CloseReportDto report)
         {
             var scope = Scope.ServiceProvider.CreateScope();

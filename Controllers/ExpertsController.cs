@@ -20,7 +20,7 @@ namespace SRP.Controllers
 {
     public class ExpertsController : BaseController
     {
-        public ExpertsController(IAsyncRepository<SRPUser> userRepository, IMapper mapper, ICurrentUserService currentUserService, IAsyncRepository<Doctor> doctorRepository)
+        public ExpertsController(IAsyncRepository<SRPUser> userRepository, IMapper mapper, ICurrentUserService currentUserService, IAsyncRepository<Specialist> doctorRepository)
         {
             _userRepository = userRepository;
             _mapper = mapper;
@@ -31,29 +31,29 @@ namespace SRP.Controllers
         public IAsyncRepository<SRPUser> _userRepository { get; }
         public IMapper _mapper { get; }
         public ICurrentUserService _currentUserService { get; }
-        public IAsyncRepository<Doctor> _doctorRepository { get; }
+        public IAsyncRepository<Specialist> _doctorRepository { get; }
 
         public async Task<IActionResult> GetAllDoctor()
         {
             var doctors = _doctorRepository.GetAll().ToList();
-            return View("DisplayDoctor", _mapper.Map<IList<DoctorDTO>>(doctors));
+            return View("DisplayDoctor", _mapper.Map<IList<SpecialistDTO>>(doctors));
         }
-        [Authorize(Roles = "Admin, SuperAdmin, Doctor")]
+        [Authorize(Roles = "Admin, SuperAdmin, Specialist")]
         public async Task<IActionResult> Index()
         {
-            var doctor = await _userRepository.FindManyByIncludeAsync(x => x.UserRoles.Any(x => x.Role.Name == "Doctor"));
+            var doctor = await _userRepository.FindManyByIncludeAsync(x => x.UserRoles.Any(x => x.Role.Name == "Specialist"));
             var result = _mapper.Map<IList<SRPUserDTO>>(doctor);
 
             return View(result);
         }
-        [Authorize(Roles = "Admin, SuperAdmin, Doctor")]
+        [Authorize(Roles = "Admin, SuperAdmin, Specialist")]
         public async Task<IActionResult> PuplishDoctor()
         {
             return View();
         }
-        [Authorize(Roles = "Admin, SuperAdmin, Doctor")]
+        [Authorize(Roles = "Admin, SuperAdmin, Specialist")]
         [HttpPost]
-        public async Task<IActionResult> PuplishDoctor(IFormFile formFile, Doctor newDoctor)
+        public async Task<IActionResult> PuplishDoctor(IFormFile formFile, Specialist newDoctor)
         {
             if (formFile != null && (Path.GetExtension(formFile.FileName) == ".png" || Path.GetExtension(formFile.FileName) == ".jpg") || Path.GetExtension(formFile.FileName) == ".jpeg") ;
             {
@@ -70,7 +70,7 @@ namespace SRP.Controllers
                     await formFile.CopyToAsync(stream);
                 }
                 var user = await _userRepository.FindByIncludeAsync(x => x.Id == newDoctor.Id);
-                var doctor = new Doctor
+                var doctor = new Specialist
                 {
                     User = user,
                     FirstName = user.FirstName,
@@ -89,8 +89,8 @@ namespace SRP.Controllers
             }
             return RedirectToAction("Index");
         }
-        [Authorize(Roles = "Admin, SuperAdmin, Doctor")]
-        public async Task<IActionResult> UnPuplishDoctor(Doctor Doctor)
+        [Authorize(Roles = "Admin, SuperAdmin, Specialist")]
+        public async Task<IActionResult> UnPuplishDoctor(Specialist Doctor)
         {
             var user = await _userRepository.FindByIncludeAsync(x => x.Id == Doctor.Id);
             var doctor = await _doctorRepository.FindByIncludeAsync(x => x.User == user);

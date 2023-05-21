@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace SRP.Models.Enties
 {
-    public class Doctor : AuditableEntity
+    public class Specialist : AuditableEntity
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }

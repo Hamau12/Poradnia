@@ -31,8 +31,8 @@ namespace SRP.Models.Seed
             var DoctorRole = new SRPRole()
             {
                 Id = Guid.NewGuid(),
-                Name = "Doctor",
-                NormalizedName = "DOCTOR"
+                Name = "Specialist",
+                NormalizedName = "SPECIALIST"
             };
 
             var unfonfirmedRole = new SRPRole()

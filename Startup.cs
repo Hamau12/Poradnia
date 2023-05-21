@@ -19,6 +19,7 @@ using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 using MediatR;
+using static Poradnia.Models.Data;
 
 namespace SRP
 {
@@ -39,6 +40,10 @@ namespace SRP
             services.AddDbContext<SrpDbContext>(options =>
             {
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
+            });            
+            services.AddDbContext<DoctorDbContext>(options =>
+            {
+                options.UseSqlServer(Configuration.GetConnectionString("DoctorConnection"));
             });
 
             services.AddIdentity<SRPUser, SRPRole>(opt =>

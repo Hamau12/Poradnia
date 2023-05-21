@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SRP.Models;
 
-namespace SRP.Migrations
+namespace Poradnia.Migrations
 {
     [DbContext(typeof(SrpDbContext))]
     partial class SrpDbContextModelSnapshot : ModelSnapshot
@@ -165,7 +165,33 @@ namespace SRP.Migrations
                     b.ToTable("Comment");
                 });
 
-            modelBuilder.Entity("SRP.Models.Enties.Doctor", b =>
+            modelBuilder.Entity("SRP.Models.Enties.Report", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime?>("Created")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid?>("CreatedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Message")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Type")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Report");
+                });
+
+            modelBuilder.Entity("SRP.Models.Enties.Specialist", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -202,79 +228,6 @@ namespace SRP.Migrations
                     b.ToTable("Doctor");
                 });
 
-            modelBuilder.Entity("SRP.Models.Enties.Events", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Author")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("Created")
-                        .HasColumnType("datetime2");
-
-                    b.Property<Guid?>("CreatedBy")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime?>("DateEventEnd")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("DateEventRegistractionStart")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("DateEventRegistrationEnd")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("DateEventStart")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("PeopleCount")
-                        .HasColumnType("int");
-
-                    b.Property<decimal>("Price")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<int>("Status")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Title")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Events");
-                });
-
-            modelBuilder.Entity("SRP.Models.Enties.Report", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime?>("Created")
-                        .HasColumnType("datetime2");
-
-                    b.Property<Guid?>("CreatedBy")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Message")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Status")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Type")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Report");
-                });
-
             modelBuilder.Entity("SRP.Models.SRPRole", b =>
                 {
                     b.Property<Guid>("Id")
@@ -305,29 +258,29 @@ namespace SRP.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("eaa845cd-6cba-418e-a229-0651f664d902"),
-                            ConcurrencyStamp = "ba588d7a-2196-4c31-8416-e301c2058358",
+                            Id = new Guid("e7bf2cca-008b-4836-ad4e-f1e7bc80f34f"),
+                            ConcurrencyStamp = "41c62748-37df-4357-b64d-cc9845c1283b",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = new Guid("1c682789-a8b8-40f8-a899-2e7f55a23d7b"),
-                            ConcurrencyStamp = "37bc1c4e-7ecb-42ed-9ad9-996de8289401",
-                            Name = "Doctor",
-                            NormalizedName = "DOCTOR"
+                            Id = new Guid("563eff7a-1b61-46b3-ab04-b426a3dd023d"),
+                            ConcurrencyStamp = "b40b577a-3e82-491e-a44c-d231bced0b3d",
+                            Name = "Specialist",
+                            NormalizedName = "SPECIALIST"
                         },
                         new
                         {
-                            Id = new Guid("f89f4047-4f28-4507-bb1a-2ae01ae873d5"),
-                            ConcurrencyStamp = "039fa058-8050-4989-baf4-ecd87efa30a3",
+                            Id = new Guid("a01c328e-7bbf-4fb9-8c35-bc46570a9dde"),
+                            ConcurrencyStamp = "449b3ffb-c314-4631-9e55-0e9de452d253",
                             Name = "Unconfirmed",
                             NormalizedName = "UNCONFIRMED"
                         },
                         new
                         {
-                            Id = new Guid("d080a4f3-363f-4432-9fd6-b79d75929d52"),
-                            ConcurrencyStamp = "c9fac33d-801e-48b2-ac37-0e9b41879a25",
+                            Id = new Guid("8501533f-4c18-4719-b685-2abbb1f3135f"),
+                            ConcurrencyStamp = "9c75188c-3502-4892-b2b4-3095f183a11e",
                             Name = "SuperAdmin",
                             NormalizedName = "SUPERADMIN"
                         });
@@ -404,8 +357,8 @@ namespace SRP.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("b1ff43e7-959e-48a1-aa87-ec2569f18470"),
-                            ConcurrencyStamp = "47035b23-273f-4e4f-941e-38b65971f49d",
+                            Id = new Guid("2184fade-1a65-404f-8e6d-ba96e7d79300"),
+                            ConcurrencyStamp = "80a27f74-af43-4851-b4d5-115c0ba650db",
                             Email = "test@pl.pl",
                             EmailConfirmed = true,
                             FirstName = "Wojciech",
@@ -414,9 +367,9 @@ namespace SRP.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "TEST@PL.PL",
                             NormalizedUserName = "TEST@PL.PL",
-                            PasswordHash = "AQAAAAEAACcQAAAAENLHBdiMO8yUY6hWLyCqPctUM6H2KAF3ybNxpHYCJnvZqVehCZxN5z8R9UQhJO+BLw==",
+                            PasswordHash = "AQAAAAEAACcQAAAAENH2SilJRXNkeYyUwZm8gB8WrUvXb56HeVYeBvghEoh7pjJmzgujpiA/MQ6iDiIoCg==",
                             PhoneNumberConfirmed = true,
-                            SecurityStamp = "6afcc1c7-ecf3-4203-bc3c-4f204afb4cf3",
+                            SecurityStamp = "c35bbe3d-e089-471a-bd85-90e71fa2bdc3",
                             UserName = "TEST@PL.PL"
                         });
                 });
@@ -438,8 +391,8 @@ namespace SRP.Migrations
                     b.HasData(
                         new
                         {
-                            UserId = new Guid("b1ff43e7-959e-48a1-aa87-ec2569f18470"),
-                            RoleId = new Guid("d080a4f3-363f-4432-9fd6-b79d75929d52")
+                            UserId = new Guid("2184fade-1a65-404f-8e6d-ba96e7d79300"),
+                            RoleId = new Guid("8501533f-4c18-4719-b685-2abbb1f3135f")
                         });
                 });
 
@@ -488,7 +441,7 @@ namespace SRP.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("SRP.Models.Enties.Doctor", b =>
+            modelBuilder.Entity("SRP.Models.Enties.Specialist", b =>
                 {
                     b.HasOne("SRP.Models.SRPUser", "User")
                         .WithMany("Doctor")

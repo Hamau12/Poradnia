@@ -65,7 +65,7 @@
             </tbody>
         </table>
     }
-    @if (User.IsInRole("Admin") || User.IsInRole("SuperAdmin") || User.IsInRole("Doctor") || Model.Report.Status == SRP.Models.Enties.Status.Otwarte)
+    @if (User.IsInRole("Admin") || User.IsInRole("SuperAdmin") || User.IsInRole("Specialist") || Model.Report.Status == SRP.Models.Enties.Status.Otwarte)
     {
         <h3>Dodaj Odpowiedź</h3>
         <input type="hidden" name="ReportId" value="@Model.Report.Id" />
@@ -85,7 +85,7 @@
     }
 </form>
 
-@if (User.IsInRole("Admin") || User.IsInRole("SuperAdmin") || User.IsInRole("Doctor") && Model.Report.Status != SRP.Models.Enties.Status.Zakończone)
+@if (User.IsInRole("Admin") || User.IsInRole("SuperAdmin") || User.IsInRole("Specialist") && Model.Report.Status != SRP.Models.Enties.Status.Zakończone)
 {
     <form asp-action="Close" asp-controller="Reports" method="post">
         <button type="submit" class="btn btn-outline">Zakończ zgłoszenie</button>

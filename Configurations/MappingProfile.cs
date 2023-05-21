@@ -24,7 +24,7 @@ namespace SRP.Configurations
                 .ForMember(dst => dst.Author, opt => opt.MapFrom(src => src.CreatedBy))
                 .ReverseMap();
 
-            CreateMap<Doctor, DoctorDTO>()
+            CreateMap<Specialist, SpecialistDTO>()
                 .ForMember(dst => dst.ImageName, opt => opt.MapFrom(src => src.ImageName))
                 .ReverseMap();
 

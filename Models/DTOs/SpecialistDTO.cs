@@ -3,7 +3,7 @@ using System;
 
 namespace SRP.Models.DTOs
 {
-    public class DoctorDTO
+    public class SpecialistDTO
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
