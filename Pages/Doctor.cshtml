@@ -13,19 +13,19 @@
     </div>
     <div class="column-main">
         <div class="view-toolbar">
-            <button id="buttonDay">Day</button>
-            <button id="buttonWeek">Week</button>
-            <button id="buttonMonth">Month</button>
+            <button id="buttonDay">Dzień</button>
+            <button id="buttonWeek">Tydzień</button>
+            <button id="buttonMonth">Miesiąc</button>
         </div>
         <div class="toolbar">
             <button id="buttonPrevious">&lt;</button>
-            <button id="buttonToday">Today</button>
+            <button id="buttonToday">Dziś</button>
             <button id="buttonNext">&gt;</button>
 
-            Appointment slots:
+            Terminy spotkań:
 
-            <button id="buttonGenerate">Generate</button>
-            <button id="buttonClear">Clear</button>
+            <button id="buttonGenerate">Generuj</button>
+            <button id="buttonClear">Wyczyść</button>
         </div>
         <div id="day"></div>
         <div id="week"></div>
@@ -112,7 +112,7 @@
                     args.data.barColor = app.colors.blueDarker;
                     args.data.borderColor = "darker";
                     args.data.fontColor = app.colors.text;
-                    args.data.text = "Available";
+                    args.data.text = "Dostępny";
                     break;
                 case "waiting":
                     args.data.backColor = app.colors.orange;
@@ -136,9 +136,9 @@
                 { name: "Name", id: "patientName" },
                 {
                     name: "Status", id: "status", type: "select", options: [
-                        { name: "Free", id: "free" },
-                        { name: "Waiting", id: "waiting" },
-                        { name: "Confirmed", id: "confirmed" },
+                        { name: "Wolne", id: "free" },
+                        { name: "Oczekuje", id: "waiting" },
+                        { name: "Potwierdzono", id: "confirmed" },
                     ]
                 },
                 { name: "From", id: "start", dateFormat: "MMMM d, yyyy h:mm tt", disabled: true },
@@ -252,7 +252,7 @@
 
             app.elements.buttonClear.addEventListener("click", async ev => {
 
-                const modal = await DayPilot.Modal.confirm("Do you want to delete all free slots in the current view?");
+                const modal = await DayPilot.Modal.confirm("Czy napewno chcesz usunąć wszystkie wolne terminy?");
                 if (modal.canceled) {
                     return;
                 }
@@ -266,7 +266,7 @@
             app.elements.buttonGenerate.addEventListener("click", async ev => {
                 const current = nav.selectMode.toLowerCase();
                 const form = [
-                    { text: `Generate slots for the current ${current}?` },
+                    { text: `Generowanie slotów ${current}?` },
                 ];
 
                 if (current === "week" || current === "month") {
@@ -278,7 +278,7 @@
                 }
 
                 form.push({
-                    text: "In the month view, you can also generate slots by selecting days using drag and drop."
+                    text: "W widoku miesiąca można również generować przedziały czasowe, wybierając dni metodą przeciągnij i upuść."
                 });
 
                 const modal = await DayPilot.Modal.form(form, {});
