@@ -23,8 +23,7 @@ namespace SRP.Models
         public DbSet<Report> ReportReport { get; set; }
         public DbSet<Access> AccessAccess { get; set; }
         public DbSet<Comment> CommenComment { get; set; }
-        public DbSet<Doctor> DoctorDoctor { get; set; }
-        public DbSet<Events> EventsEvents { get; set; }
+        public DbSet<Specialist> DoctorDoctor { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

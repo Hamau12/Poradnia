@@ -1,6 +1,6 @@
 ﻿@using Microsoft.AspNetCore.Identity;
 @using SRP.Models.DTOs;
-@model IList<DoctorDTO>
+@model IList<SpecialistDTO>
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -24,7 +24,7 @@
                                 <p>@doctor.Description</p>
                                 <div>
                                     <button class="btn btn-primary btn-round">Poznaj</button>
-                                    <button class="btn btn-primary btn-round btn-simple">Umów wizytę</button>
+                                    <a asp-controller="Experts" asp-action="PatientsPanel" asp-route-parametr="@doctor.Id" class="btn btn-primary btn-round btn-simple"><span>Umów wizytę</span></a>
                                 </div>
                             </div>
                         </div>
@@ -33,8 +33,8 @@
             </div>
         }
     </div>
-    @if (User.IsInRole("Admin") || User.IsInRole("SuperAdmin") || User.IsInRole("Doctor"))
+    @if (User.IsInRole("Admin") || User.IsInRole("SuperAdmin"))
     {
-        <a class="btn btn-outline-warning" asp-controller="Experts" asp-action="Index">Użytkownicy</a>
+        <a class="btn btn-outline-warning" asp-controller="Experts" asp-action="Index">Zarządzaj specjalistami</a>
     }
 </div>

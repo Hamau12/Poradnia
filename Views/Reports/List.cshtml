@@ -4,7 +4,7 @@
     ViewBag.Title = "title";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-@if ((User.IsInRole("Admin") || User.IsInRole("SuperAdmin") || User.IsInRole("Doctor")))
+@if ((User.IsInRole("Admin") || User.IsInRole("SuperAdmin") || User.IsInRole("Specialist")))
 {
     <h2>Wszystkie zgłoszenia</h2>
 }
