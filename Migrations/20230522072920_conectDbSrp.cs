@@ -1,9 +1,9 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace Poradnia.Migrations.DoctorDb
+namespace Poradnia.Migrations
 {
-    public partial class init2 : Migration
+    public partial class conectDbSrp : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -15,7 +15,8 @@ namespace Poradnia.Migrations.DoctorDb
                     Start = table.Column<DateTime>(nullable: false),
                     End = table.Column<DateTime>(nullable: false),
                     PatientName = table.Column<string>(nullable: true),
-                    PatientId = table.Column<string>(nullable: true),
+                    PatientId = table.Column<Guid>(nullable: true),
+                    SpecialistId = table.Column<Guid>(nullable: false),
                     Status = table.Column<string>(nullable: true)
                 },
                 constraints: table =>

@@ -7,11 +7,11 @@ using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Poradnia.Models;
 
-namespace Poradnia.Migrations.DoctorDb
+namespace Poradnia.Migrations
 {
     [DbContext(typeof(Data.DoctorDbContext))]
-    [Migration("20230521071314_init2")]
-    partial class init2
+    [Migration("20230522072920_conectDbSrp")]
+    partial class conectDbSrp
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -30,11 +30,14 @@ namespace Poradnia.Migrations.DoctorDb
                     b.Property<DateTime>("End")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("PatientId")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<Guid?>("PatientId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("PatientName")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("SpecialistId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("Start")
                         .HasColumnType("datetime2");

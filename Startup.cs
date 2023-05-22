@@ -114,6 +114,10 @@ namespace SRP
                         app.ApplicationServices.CreateScope())
             using (var context = scope.ServiceProvider.GetService<SrpDbContext>())
                 context.Database.Migrate();
+            using (var scope =
+                app.ApplicationServices.CreateScope())
+            using (var context = scope.ServiceProvider.GetService<DoctorDbContext>())
+                context.Database.Migrate();
 
             app.UseStaticFiles();
             app.UseSession();

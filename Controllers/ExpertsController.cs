@@ -1,15 +1,12 @@
 ﻿using AutoMapper;
-
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-
 using SRP.interfaces;
 using SRP.Interfaces;
 using SRP.Models;
 using SRP.Models.DTOs;
 using SRP.Models.Enties;
-
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -50,6 +47,17 @@ namespace SRP.Controllers
         public async Task<IActionResult> PuplishDoctor()
         {
             return View();
+        }
+        [Authorize(Roles = "Specialist")]
+        public async Task<IActionResult> PanelVisits()
+        {
+            return RedirectToPage("/Doctor");
+        }
+        [Authorize]
+        public async Task<IActionResult> PatientsPanel(Guid parametr)
+        {
+            TempData["Parametr"] = parametr.ToString();
+            return RedirectToPage("/Patient");
         }
         [Authorize(Roles = "Admin, SuperAdmin, Specialist")]
         [HttpPost]

@@ -1,9 +1,9 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace Poradnia.Migrations
+namespace Poradnia.Migrations.SrpDb
 {
-    public partial class init : Migration
+    public partial class conectDb : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -136,7 +136,8 @@ namespace Poradnia.Migrations
                     Description = table.Column<string>(nullable: true),
                     Specialisation = table.Column<int>(nullable: false),
                     ImageName = table.Column<string>(nullable: true),
-                    UserId = table.Column<Guid>(nullable: true)
+                    UserId = table.Column<Guid>(nullable: true),
+                    AppointmentId = table.Column<Guid>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -234,26 +235,49 @@ namespace Poradnia.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "tmentSlot",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(nullable: false),
+                    Start = table.Column<DateTime>(nullable: false),
+                    End = table.Column<DateTime>(nullable: false),
+                    PatientName = table.Column<string>(nullable: true),
+                    PatientId = table.Column<Guid>(nullable: true),
+                    SpecialistId = table.Column<Guid>(nullable: false),
+                    Status = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_tmentSlot", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_tmentSlot_Doctor_SpecialistId",
+                        column: x => x.SpecialistId,
+                        principalTable: "Doctor",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.InsertData(
                 table: "Roles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { new Guid("709aa7ef-8c95-4b01-b8d5-ff5c7e856d6d"), "2affadb3-7cd5-462f-bd95-8c6880021984", "Admin", "ADMIN" },
-                    { new Guid("04c6ca88-691a-491e-ba33-b697113d8ce7"), "7dd42aac-132f-4f33-8949-035694f5df3e", "Specialist", "DOCTOR" },
-                    { new Guid("d5ab315e-ca58-4971-a901-e109146974b5"), "215bbd03-041c-4432-96eb-5654e5bebaa2", "Unconfirmed", "UNCONFIRMED" },
-                    { new Guid("c58e18ee-6905-4060-8826-4307c1128098"), "ab8f951e-d54c-4c51-8c27-d0e6ee173837", "SuperAdmin", "SUPERADMIN" }
+                    { new Guid("68168f17-3f69-44f1-b9c7-2afd87ee612d"), "6f5b6066-b162-4797-81e5-f5bc192991c3", "Admin", "ADMIN" },
+                    { new Guid("e080108a-2c67-43fe-96d1-4707dddcf78e"), "652dec09-9bf6-41a3-b567-03299b655dc8", "Specialist", "SPECIALIST" },
+                    { new Guid("4922f9f1-5b75-4178-b818-a33fe6e18bdb"), "13b28b70-e112-49cb-833c-a8743db81834", "Unconfirmed", "UNCONFIRMED" },
+                    { new Guid("9310344c-13b6-4ad1-91b2-5bd3a5dc3ca5"), "402bce15-056b-4fd0-a177-eff2bf4132f5", "SuperAdmin", "SUPERADMIN" }
                 });
 
             migrationBuilder.InsertData(
                 table: "Users",
                 columns: new[] { "Id", "ConcurrencyStamp", "Email", "EmailConfirmed", "FirstName", "IsDoctor", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "UserName" },
-                values: new object[] { new Guid("4992b705-1e36-4af6-a9bf-63abcb35e7b1"), "49bdd729-6bc0-41c5-a531-f999c211b977", "test@pl.pl", true, "Wojciech", false, "Nytko", false, null, "TEST@PL.PL", "TEST@PL.PL", "AQAAAAEAACcQAAAAEIT7Z+O8yPQszBqmT4xmjY0jKJsfYDn7t4i+pPeozu8NvrtTAhYXDMIPkPY51ViviA==", null, true, "8583100b-86c1-45c4-8485-fc676afaa46e", "TEST@PL.PL" });
+                values: new object[] { new Guid("90df346a-cb62-49f6-8ba8-0a76207e9688"), "86ff1f8b-e5f5-4a4d-9264-1bc3c7eb04e9", "test@pl.pl", true, "Wojciech", false, "Nytko", false, null, "TEST@PL.PL", "TEST@PL.PL", "AQAAAAEAACcQAAAAEH3VWOwL6Mq0UaQYDB3IOgjTOcBWiSOrCDfom5QLOISRjyZOMqgbREqwVfEmrlh58A==", null, true, "26780641-faac-434f-893b-b073b8a73723", "TEST@PL.PL" });
 
             migrationBuilder.InsertData(
                 table: "UserRoles",
                 columns: new[] { "UserId", "RoleId" },
-                values: new object[] { new Guid("4992b705-1e36-4af6-a9bf-63abcb35e7b1"), new Guid("c58e18ee-6905-4060-8826-4307c1128098") });
+                values: new object[] { new Guid("90df346a-cb62-49f6-8ba8-0a76207e9688"), new Guid("9310344c-13b6-4ad1-91b2-5bd3a5dc3ca5") });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Comment_ReportId",
@@ -276,6 +300,12 @@ namespace Poradnia.Migrations
                 column: "NormalizedName",
                 unique: true,
                 filter: "[NormalizedName] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_tmentSlot_SpecialistId",
+                table: "tmentSlot",
+                column: "SpecialistId",
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_UserClaims_UserId",
@@ -314,10 +344,10 @@ namespace Poradnia.Migrations
                 name: "Comment");
 
             migrationBuilder.DropTable(
-                name: "Doctor");
+                name: "RoleClaims");
 
             migrationBuilder.DropTable(
-                name: "RoleClaims");
+                name: "tmentSlot");
 
             migrationBuilder.DropTable(
                 name: "UserClaims");
@@ -333,6 +363,9 @@ namespace Poradnia.Migrations
 
             migrationBuilder.DropTable(
                 name: "Report");
+
+            migrationBuilder.DropTable(
+                name: "Doctor");
 
             migrationBuilder.DropTable(
                 name: "Roles");

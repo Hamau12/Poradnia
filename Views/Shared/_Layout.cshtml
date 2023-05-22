@@ -38,9 +38,11 @@
                             {
                                 <a class="btn btn-outline-warning" asp-controller="Users" asp-action="Index">Użytkownicy</a>
                             }
+
                             @if (User.IsInRole("Specialist"))
                             {
-                                <a href="~/Doctor" class="btn btn-outline-warning"><span>Panel wizyt</span></a>
+                                <a class="btn btn-outline-warning" asp-controller="Experts" asp-action="PanelVisits"><span>Panel wizyt</span></a>
+                                
                             }
                         </li>
                     </ul>

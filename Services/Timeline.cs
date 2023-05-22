@@ -13,11 +13,11 @@ namespace Poradnia.Services
         public static int AfternoonShiftEnds = 18;
 
 
-        public static List<AppointmentSlot> GenerateSlots(DateTime start, DateTime end, bool weekends)
+        public static List<AppointmentSlot> GenerateSlots(DateTime start, DateTime end, bool weekends,Guid idSpecialist)
         {
             var result = new List<AppointmentSlot>();
             var timeline = GenerateTimeline(start, end, weekends);
-
+            
             foreach (var cell in timeline)
             {
                 if (start <= cell.Start && cell.End <= end)
@@ -29,6 +29,7 @@ namespace Poradnia.Services
                         slot.Start = slotStart;
                         slot.End = slotEnd;
                         slot.Status = "free";
+                        slot.SpecialistId = idSpecialist;
                         result.Add(slot);
                     }
                 }

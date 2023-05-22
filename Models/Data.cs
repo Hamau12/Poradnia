@@ -1,6 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.Text.Json.Serialization;
 using System;
+using SRP.Models.Enties;
+using SRP.Models.Enums;
 
 namespace Poradnia.Models
 {
@@ -17,7 +19,8 @@ namespace Poradnia.Models
             public string? Text => PatientName;
 
             [JsonPropertyName("patient")]
-            public string? PatientId { set; get; }
+            public Guid? PatientId { set; get; }
+            public Guid SpecialistId { get; set; }
 
             public string Status { get; set; } = "free";
 

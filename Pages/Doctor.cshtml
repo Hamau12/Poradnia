@@ -1,12 +1,17 @@
 ﻿@page
+@using System.Security.Cryptography.X509Certificates
+@using Microsoft.AspNetCore.Identity
+@using SRP.Models
 @model Poradnia.Pages.DoctorModel
+@inject UserManager<SRPUser> UserManager
 @{
+
     ViewData["Title"] = "Doctor";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <script src="~/lib/daypilot/daypilot-all.min.js"></script>
-
+@*Podstawowa nawigacja*@
 <div class="columns">
     <div class="column-left">
         <div id="nav"></div>
@@ -32,7 +37,6 @@
         <div id="month"></div>
     </div>
 </div>
-
 <script>
     const app = {
         elements: {
@@ -83,13 +87,18 @@
                     return month;
             }
         },
+
+        /*Akcje klanedarza*/
+
         async createAppointmentSlot(args) {
             const appointment = {
                 status: "free",
                 start: args.start,
                 end: args.end
             };
+
             const { data } = await DayPilot.Http.post(`/api/appointments`, appointment);
+
             args.control.events.add(data);
 
         },
@@ -99,6 +108,7 @@
                 start: args.newStart,
                 end: args.newEnd
             };
+
             const { data } = await DayPilot.Http.put(`/api/appointments/${appointment.id}`, appointment);
         },
         async deleteAppointmentSlot(args) {
@@ -150,6 +160,7 @@
             const options = {
                 focus: "patientName"
             };
+
 
             const modal = await DayPilot.Modal.form(form, data, options);
             if (modal.canceled) {
@@ -300,11 +311,10 @@
 
             });
 
-
             app.loadEvents();
         }
     };
-
+    /*Nawigacja kalendarza*/
     const nav = new DayPilot.Navigator("nav", {
         selectMode: "Week",
         showMonths: 3,

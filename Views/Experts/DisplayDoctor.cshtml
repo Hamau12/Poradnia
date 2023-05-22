@@ -24,7 +24,7 @@
                                 <p>@doctor.Description</p>
                                 <div>
                                     <button class="btn btn-primary btn-round">Poznaj</button>
-                                    <a href="~/Patient" class="btn btn-primary btn-round btn-simple"><span>Umów wizytę</span></a>
+                                    <a asp-controller="Experts" asp-action="PatientsPanel" asp-route-parametr="@doctor.Id" class="btn btn-primary btn-round btn-simple"><span>Umów wizytę</span></a>
                                 </div>
                             </div>
                         </div>

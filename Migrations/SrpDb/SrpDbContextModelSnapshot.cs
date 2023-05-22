@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SRP.Models;
 
-namespace Poradnia.Migrations
+namespace Poradnia.Migrations.SrpDb
 {
     [DbContext(typeof(SrpDbContext))]
     partial class SrpDbContextModelSnapshot : ModelSnapshot
@@ -105,6 +105,38 @@ namespace Poradnia.Migrations
                     b.ToTable("UserTokens");
                 });
 
+            modelBuilder.Entity("Poradnia.Models.Data+AppointmentSlot", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("End")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid?>("PatientId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("PatientName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("SpecialistId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("Start")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Status")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("SpecialistId")
+                        .IsUnique();
+
+                    b.ToTable("tmentSlot");
+                });
+
             modelBuilder.Entity("SRP.Models.Enties.Access", b =>
                 {
                     b.Property<Guid>("Id")
@@ -197,6 +229,9 @@ namespace Poradnia.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<Guid>("AppointmentId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<DateTime?>("Created")
                         .HasColumnType("datetime2");
 
@@ -258,29 +293,29 @@ namespace Poradnia.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("e7bf2cca-008b-4836-ad4e-f1e7bc80f34f"),
-                            ConcurrencyStamp = "41c62748-37df-4357-b64d-cc9845c1283b",
+                            Id = new Guid("68168f17-3f69-44f1-b9c7-2afd87ee612d"),
+                            ConcurrencyStamp = "6f5b6066-b162-4797-81e5-f5bc192991c3",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = new Guid("563eff7a-1b61-46b3-ab04-b426a3dd023d"),
-                            ConcurrencyStamp = "b40b577a-3e82-491e-a44c-d231bced0b3d",
+                            Id = new Guid("e080108a-2c67-43fe-96d1-4707dddcf78e"),
+                            ConcurrencyStamp = "652dec09-9bf6-41a3-b567-03299b655dc8",
                             Name = "Specialist",
                             NormalizedName = "SPECIALIST"
                         },
                         new
                         {
-                            Id = new Guid("a01c328e-7bbf-4fb9-8c35-bc46570a9dde"),
-                            ConcurrencyStamp = "449b3ffb-c314-4631-9e55-0e9de452d253",
+                            Id = new Guid("4922f9f1-5b75-4178-b818-a33fe6e18bdb"),
+                            ConcurrencyStamp = "13b28b70-e112-49cb-833c-a8743db81834",
                             Name = "Unconfirmed",
                             NormalizedName = "UNCONFIRMED"
                         },
                         new
                         {
-                            Id = new Guid("8501533f-4c18-4719-b685-2abbb1f3135f"),
-                            ConcurrencyStamp = "9c75188c-3502-4892-b2b4-3095f183a11e",
+                            Id = new Guid("9310344c-13b6-4ad1-91b2-5bd3a5dc3ca5"),
+                            ConcurrencyStamp = "402bce15-056b-4fd0-a177-eff2bf4132f5",
                             Name = "SuperAdmin",
                             NormalizedName = "SUPERADMIN"
                         });
@@ -357,8 +392,8 @@ namespace Poradnia.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("2184fade-1a65-404f-8e6d-ba96e7d79300"),
-                            ConcurrencyStamp = "80a27f74-af43-4851-b4d5-115c0ba650db",
+                            Id = new Guid("90df346a-cb62-49f6-8ba8-0a76207e9688"),
+                            ConcurrencyStamp = "86ff1f8b-e5f5-4a4d-9264-1bc3c7eb04e9",
                             Email = "test@pl.pl",
                             EmailConfirmed = true,
                             FirstName = "Wojciech",
@@ -367,9 +402,9 @@ namespace Poradnia.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "TEST@PL.PL",
                             NormalizedUserName = "TEST@PL.PL",
-                            PasswordHash = "AQAAAAEAACcQAAAAENH2SilJRXNkeYyUwZm8gB8WrUvXb56HeVYeBvghEoh7pjJmzgujpiA/MQ6iDiIoCg==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEH3VWOwL6Mq0UaQYDB3IOgjTOcBWiSOrCDfom5QLOISRjyZOMqgbREqwVfEmrlh58A==",
                             PhoneNumberConfirmed = true,
-                            SecurityStamp = "c35bbe3d-e089-471a-bd85-90e71fa2bdc3",
+                            SecurityStamp = "26780641-faac-434f-893b-b073b8a73723",
                             UserName = "TEST@PL.PL"
                         });
                 });
@@ -391,8 +426,8 @@ namespace Poradnia.Migrations
                     b.HasData(
                         new
                         {
-                            UserId = new Guid("2184fade-1a65-404f-8e6d-ba96e7d79300"),
-                            RoleId = new Guid("8501533f-4c18-4719-b685-2abbb1f3135f")
+                            UserId = new Guid("90df346a-cb62-49f6-8ba8-0a76207e9688"),
+                            RoleId = new Guid("9310344c-13b6-4ad1-91b2-5bd3a5dc3ca5")
                         });
                 });
 
@@ -428,6 +463,15 @@ namespace Poradnia.Migrations
                     b.HasOne("SRP.Models.SRPUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Poradnia.Models.Data+AppointmentSlot", b =>
+                {
+                    b.HasOne("SRP.Models.Enties.Specialist", null)
+                        .WithOne("AppointmentSlot")
+                        .HasForeignKey("Poradnia.Models.Data+AppointmentSlot", "SpecialistId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

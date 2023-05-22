@@ -1,6 +1,7 @@
 ﻿@page
 @model Poradnia.Pages.PatientModel
 @{
+    var idDoctor = ViewData["Parametr"] as string;
     ViewData["Title"] = "Doctor";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -29,8 +30,8 @@
             const start = nav.visibleStart() > DayPilot.Date.now() ? nav.visibleStart() : DayPilot.Date.now();
             const end = nav.visibleEnd();
             const patient = app.patientId;
-
-            const { data } = await DayPilot.Http.get(`/api/appointments/free?start=${start}&end=${end}&patient=${patient}`);
+            const idSpecialist ="@idDoctor" ;
+            const { data } = await DayPilot.Http.get(`/api/appointments/free?start=${start}&end=${end}&patient=${patient}&idSpecialist=${idSpecialist}`);
 
             if (day) {
                 calendar.startDate = day;
@@ -111,7 +112,6 @@
                 end: args.e.end(),
                 patient: app.patientId
             };
-
             const options = {
                 focus: "name"
             };

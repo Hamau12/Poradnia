@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Poradnia.Models;
 
-namespace Poradnia.Migrations.DoctorDb
+namespace Poradnia.Migrations
 {
     [DbContext(typeof(Data.DoctorDbContext))]
     partial class DoctorDbContextModelSnapshot : ModelSnapshot
@@ -28,11 +28,14 @@ namespace Poradnia.Migrations.DoctorDb
                     b.Property<DateTime>("End")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("PatientId")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<Guid?>("PatientId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("PatientName")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("SpecialistId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("Start")
                         .HasColumnType("datetime2");
