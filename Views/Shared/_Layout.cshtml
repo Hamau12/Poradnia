@@ -30,8 +30,8 @@
                             <div class="btn-group btn-profil">
                                 <button type="button" class="btn btn-outline-warning dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Kontakt</button>
                                 <div class="dropdown-menu">
-                                    <a class="dropdown-item  btn btn-outline-warning" data-bs-toggle="tooltip" data-bs-placement="top" asp-controller="Reports" asp-action="Create">Dodaj nowe</a>
-                                    <a class="dropdown-item  btn btn-outline-warning" asp-controller="Reports" asp-action="List">Przeglądaj</a>
+                                    <a class="dropdown-item  btn btn-outline-warning" data-bs-toggle="tooltip" data-bs-placement="top" asp-controller="Reports" asp-action="Create">Dodaj zgłoszenie</a>
+                                    <a class="dropdown-item  btn btn-outline-warning" asp-controller="Reports" asp-action="List">Przeglądaj zgłoszenia</a>
                                 </div>
                             </div>
                             @if (User.IsInRole("Admin") || User.IsInRole("SuperAdmin"))

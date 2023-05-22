@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Poradnia.Models;
 
-namespace Poradnia.Migrations
+namespace Poradnia.Migrations.DoctorDb
 {
     [DbContext(typeof(Data.DoctorDbContext))]
     partial class DoctorDbContextModelSnapshot : ModelSnapshot

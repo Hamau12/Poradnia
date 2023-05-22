@@ -3,17 +3,15 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SRP.Models;
 
-namespace Poradnia.Migrations.SrpDb
+namespace Poradnia.Migrations
 {
     [DbContext(typeof(SrpDbContext))]
-    [Migration("20230522072953_conectDb")]
-    partial class conectDb
+    partial class SrpDbContextModelSnapshot : ModelSnapshot
     {
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -255,7 +253,7 @@ namespace Poradnia.Migrations.SrpDb
                     b.Property<int>("Specialisation")
                         .HasColumnType("int");
 
-                    b.Property<Guid?>("UserId")
+                    b.Property<Guid>("UserId")
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
@@ -263,6 +261,19 @@ namespace Poradnia.Migrations.SrpDb
                     b.HasIndex("UserId");
 
                     b.ToTable("Doctor");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("8d4aa675-5ea6-46ca-a2b8-c64211097354"),
+                            AppointmentId = new Guid("00000000-0000-0000-0000-000000000000"),
+                            Description = "Lekarz testowy",
+                            FirstName = "Jan",
+                            ImageName = "lstcxbigoiv.png",
+                            LastName = "Doktor",
+                            Specialisation = 0,
+                            UserId = new Guid("92220808-2e55-4b79-b00e-f18e985e5f33")
+                        });
                 });
 
             modelBuilder.Entity("SRP.Models.SRPRole", b =>
@@ -295,29 +306,29 @@ namespace Poradnia.Migrations.SrpDb
                     b.HasData(
                         new
                         {
-                            Id = new Guid("68168f17-3f69-44f1-b9c7-2afd87ee612d"),
-                            ConcurrencyStamp = "6f5b6066-b162-4797-81e5-f5bc192991c3",
+                            Id = new Guid("0dbf53f2-bfda-4b41-99a8-fb853a5791d7"),
+                            ConcurrencyStamp = "7575eb8c-bca3-4da4-b8d0-188119858873",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = new Guid("e080108a-2c67-43fe-96d1-4707dddcf78e"),
-                            ConcurrencyStamp = "652dec09-9bf6-41a3-b567-03299b655dc8",
+                            Id = new Guid("58f3cda0-62d4-4925-8170-c935054e6889"),
+                            ConcurrencyStamp = "2879f6ba-f954-4c6a-9727-d36d72246768",
                             Name = "Specialist",
                             NormalizedName = "SPECIALIST"
                         },
                         new
                         {
-                            Id = new Guid("4922f9f1-5b75-4178-b818-a33fe6e18bdb"),
-                            ConcurrencyStamp = "13b28b70-e112-49cb-833c-a8743db81834",
+                            Id = new Guid("214e9d76-c596-4913-a0c4-4001461f6ec9"),
+                            ConcurrencyStamp = "798de1de-e8e5-4695-86e3-bc1c536fcc30",
                             Name = "Unconfirmed",
                             NormalizedName = "UNCONFIRMED"
                         },
                         new
                         {
-                            Id = new Guid("9310344c-13b6-4ad1-91b2-5bd3a5dc3ca5"),
-                            ConcurrencyStamp = "402bce15-056b-4fd0-a177-eff2bf4132f5",
+                            Id = new Guid("b22407a4-5a81-4743-8212-3987e29d4909"),
+                            ConcurrencyStamp = "0ab0a7a0-0e7b-42ea-8ad2-a6cff37378f2",
                             Name = "SuperAdmin",
                             NormalizedName = "SUPERADMIN"
                         });
@@ -394,8 +405,8 @@ namespace Poradnia.Migrations.SrpDb
                     b.HasData(
                         new
                         {
-                            Id = new Guid("90df346a-cb62-49f6-8ba8-0a76207e9688"),
-                            ConcurrencyStamp = "86ff1f8b-e5f5-4a4d-9264-1bc3c7eb04e9",
+                            Id = new Guid("e8a59fe2-cb12-4dae-9bae-5ddde4b77a8b"),
+                            ConcurrencyStamp = "2e34dfd1-8a7e-426f-8f8c-b5cc71d7e81a",
                             Email = "test@pl.pl",
                             EmailConfirmed = true,
                             FirstName = "Wojciech",
@@ -404,10 +415,27 @@ namespace Poradnia.Migrations.SrpDb
                             LockoutEnabled = false,
                             NormalizedEmail = "TEST@PL.PL",
                             NormalizedUserName = "TEST@PL.PL",
-                            PasswordHash = "AQAAAAEAACcQAAAAEH3VWOwL6Mq0UaQYDB3IOgjTOcBWiSOrCDfom5QLOISRjyZOMqgbREqwVfEmrlh58A==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEHwGPBPjF9ArROm+OA/Yb37kFsDeqySxi20gfatDNALVZYH+I30yFAXMgUwgyEO1wg==",
                             PhoneNumberConfirmed = true,
-                            SecurityStamp = "26780641-faac-434f-893b-b073b8a73723",
+                            SecurityStamp = "854d811f-b797-401b-bccd-519ee0cbd987",
                             UserName = "TEST@PL.PL"
+                        },
+                        new
+                        {
+                            Id = new Guid("92220808-2e55-4b79-b00e-f18e985e5f33"),
+                            ConcurrencyStamp = "0e76357b-c319-4a71-a2f7-2c0bdaea6c11",
+                            Email = "test2@pl.pl",
+                            EmailConfirmed = true,
+                            FirstName = "Jan",
+                            IsDoctor = true,
+                            LastName = "Doktor",
+                            LockoutEnabled = false,
+                            NormalizedEmail = "TEST2@PL.PL",
+                            NormalizedUserName = "TEST2@PL.PL",
+                            PasswordHash = "AQAAAAEAACcQAAAAEEC3bLRnkD2X1yRxDQKgPxR7vwkpubd2aD9k42UHMnohfx5n3P0QPvtdJh5LgDlIIg==",
+                            PhoneNumberConfirmed = true,
+                            SecurityStamp = "8c5e9846-50ca-4ba8-8a0a-0c81443fc598",
+                            UserName = "TEST2@PL.PL"
                         });
                 });
 
@@ -428,8 +456,13 @@ namespace Poradnia.Migrations.SrpDb
                     b.HasData(
                         new
                         {
-                            UserId = new Guid("90df346a-cb62-49f6-8ba8-0a76207e9688"),
-                            RoleId = new Guid("9310344c-13b6-4ad1-91b2-5bd3a5dc3ca5")
+                            UserId = new Guid("e8a59fe2-cb12-4dae-9bae-5ddde4b77a8b"),
+                            RoleId = new Guid("b22407a4-5a81-4743-8212-3987e29d4909")
+                        },
+                        new
+                        {
+                            UserId = new Guid("92220808-2e55-4b79-b00e-f18e985e5f33"),
+                            RoleId = new Guid("58f3cda0-62d4-4925-8170-c935054e6889")
                         });
                 });
 
@@ -491,7 +524,9 @@ namespace Poradnia.Migrations.SrpDb
                 {
                     b.HasOne("SRP.Models.SRPUser", "User")
                         .WithMany("Doctor")
-                        .HasForeignKey("UserId");
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("SRP.Models.SRPUserRole", b =>

@@ -1,9 +1,9 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace Poradnia.Migrations
+namespace Poradnia.Migrations.DoctorDb
 {
-    public partial class conectDbSrp : Migration
+    public partial class init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

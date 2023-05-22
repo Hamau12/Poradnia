@@ -7,11 +7,11 @@ using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Poradnia.Models;
 
-namespace Poradnia.Migrations
+namespace Poradnia.Migrations.DoctorDb
 {
     [DbContext(typeof(Data.DoctorDbContext))]
-    [Migration("20230522072920_conectDbSrp")]
-    partial class conectDbSrp
+    [Migration("20230522152009_init")]
+    partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

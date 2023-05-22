@@ -13,6 +13,7 @@ namespace SRP.Models.Enties
         public Specialisation Specialisation { get;set;}
         public string ImageName { get; set; }
         public SRPUser User { get; set; }
+        public Guid UserId { get; set; }
         public Data.AppointmentSlot AppointmentSlot { get; set; }
         public Guid AppointmentId { get; set; }
 

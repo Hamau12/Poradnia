@@ -1,9 +1,9 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace Poradnia.Migrations.SrpDb
+namespace Poradnia.Migrations
 {
-    public partial class conectDb : Migration
+    public partial class init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -136,7 +136,7 @@ namespace Poradnia.Migrations.SrpDb
                     Description = table.Column<string>(nullable: true),
                     Specialisation = table.Column<int>(nullable: false),
                     ImageName = table.Column<string>(nullable: true),
-                    UserId = table.Column<Guid>(nullable: true),
+                    UserId = table.Column<Guid>(nullable: false),
                     AppointmentId = table.Column<Guid>(nullable: false)
                 },
                 constraints: table =>
@@ -147,7 +147,7 @@ namespace Poradnia.Migrations.SrpDb
                         column: x => x.UserId,
                         principalTable: "Users",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -263,21 +263,35 @@ namespace Poradnia.Migrations.SrpDb
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { new Guid("68168f17-3f69-44f1-b9c7-2afd87ee612d"), "6f5b6066-b162-4797-81e5-f5bc192991c3", "Admin", "ADMIN" },
-                    { new Guid("e080108a-2c67-43fe-96d1-4707dddcf78e"), "652dec09-9bf6-41a3-b567-03299b655dc8", "Specialist", "SPECIALIST" },
-                    { new Guid("4922f9f1-5b75-4178-b818-a33fe6e18bdb"), "13b28b70-e112-49cb-833c-a8743db81834", "Unconfirmed", "UNCONFIRMED" },
-                    { new Guid("9310344c-13b6-4ad1-91b2-5bd3a5dc3ca5"), "402bce15-056b-4fd0-a177-eff2bf4132f5", "SuperAdmin", "SUPERADMIN" }
+                    { new Guid("0dbf53f2-bfda-4b41-99a8-fb853a5791d7"), "7575eb8c-bca3-4da4-b8d0-188119858873", "Admin", "ADMIN" },
+                    { new Guid("58f3cda0-62d4-4925-8170-c935054e6889"), "2879f6ba-f954-4c6a-9727-d36d72246768", "Specialist", "SPECIALIST" },
+                    { new Guid("214e9d76-c596-4913-a0c4-4001461f6ec9"), "798de1de-e8e5-4695-86e3-bc1c536fcc30", "Unconfirmed", "UNCONFIRMED" },
+                    { new Guid("b22407a4-5a81-4743-8212-3987e29d4909"), "0ab0a7a0-0e7b-42ea-8ad2-a6cff37378f2", "SuperAdmin", "SUPERADMIN" }
                 });
 
             migrationBuilder.InsertData(
                 table: "Users",
                 columns: new[] { "Id", "ConcurrencyStamp", "Email", "EmailConfirmed", "FirstName", "IsDoctor", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "UserName" },
-                values: new object[] { new Guid("90df346a-cb62-49f6-8ba8-0a76207e9688"), "86ff1f8b-e5f5-4a4d-9264-1bc3c7eb04e9", "test@pl.pl", true, "Wojciech", false, "Nytko", false, null, "TEST@PL.PL", "TEST@PL.PL", "AQAAAAEAACcQAAAAEH3VWOwL6Mq0UaQYDB3IOgjTOcBWiSOrCDfom5QLOISRjyZOMqgbREqwVfEmrlh58A==", null, true, "26780641-faac-434f-893b-b073b8a73723", "TEST@PL.PL" });
+                values: new object[,]
+                {
+                    { new Guid("e8a59fe2-cb12-4dae-9bae-5ddde4b77a8b"), "2e34dfd1-8a7e-426f-8f8c-b5cc71d7e81a", "test@pl.pl", true, "Wojciech", false, "Nytko", false, null, "TEST@PL.PL", "TEST@PL.PL", "AQAAAAEAACcQAAAAEHwGPBPjF9ArROm+OA/Yb37kFsDeqySxi20gfatDNALVZYH+I30yFAXMgUwgyEO1wg==", null, true, "854d811f-b797-401b-bccd-519ee0cbd987", "TEST@PL.PL" },
+                    { new Guid("92220808-2e55-4b79-b00e-f18e985e5f33"), "0e76357b-c319-4a71-a2f7-2c0bdaea6c11", "test2@pl.pl", true, "Jan", true, "Doktor", false, null, "TEST2@PL.PL", "TEST2@PL.PL", "AQAAAAEAACcQAAAAEEC3bLRnkD2X1yRxDQKgPxR7vwkpubd2aD9k42UHMnohfx5n3P0QPvtdJh5LgDlIIg==", null, true, "8c5e9846-50ca-4ba8-8a0a-0c81443fc598", "TEST2@PL.PL" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Doctor",
+                columns: new[] { "Id", "AppointmentId", "Created", "CreatedBy", "Description", "FirstName", "ImageName", "LastName", "Specialisation", "UserId" },
+                values: new object[] { new Guid("8d4aa675-5ea6-46ca-a2b8-c64211097354"), new Guid("00000000-0000-0000-0000-000000000000"), null, null, "Lekarz testowy", "Jan", "lstcxbigoiv.png", "Doktor", 0, new Guid("92220808-2e55-4b79-b00e-f18e985e5f33") });
 
             migrationBuilder.InsertData(
                 table: "UserRoles",
                 columns: new[] { "UserId", "RoleId" },
-                values: new object[] { new Guid("90df346a-cb62-49f6-8ba8-0a76207e9688"), new Guid("9310344c-13b6-4ad1-91b2-5bd3a5dc3ca5") });
+                values: new object[] { new Guid("e8a59fe2-cb12-4dae-9bae-5ddde4b77a8b"), new Guid("b22407a4-5a81-4743-8212-3987e29d4909") });
+
+            migrationBuilder.InsertData(
+                table: "UserRoles",
+                columns: new[] { "UserId", "RoleId" },
+                values: new object[] { new Guid("92220808-2e55-4b79-b00e-f18e985e5f33"), new Guid("58f3cda0-62d4-4925-8170-c935054e6889") });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Comment_ReportId",
