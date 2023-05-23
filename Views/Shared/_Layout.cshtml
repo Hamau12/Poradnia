@@ -6,71 +6,75 @@
     <title>@ViewData["Title"] - Poradnia</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/lib/boxicons/css/boxicons.css" />
+    <link href="~/lib/font-awesome/css/all.css" rel="stylesheet">
     @if (TempData["Message"] != null)
     {
         <partial name="_StatusMessage" model="@TempData["Message"]" />
     }
 </head>
 <body>
-    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-            <a class="navbar-brand" asp-controller="Home" asp-action="Index">
-                <img src="~/images/Logo1.png" />
-            </a>
-            <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
-                <ul class="navbar-nav flex-grow-1">
-                    <li class="nav-item">
-                        <a class="nav-link" asp-area="" asp-controller="Home" asp-action="About">O Nas</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" asp-area="" asp-controller="Experts" asp-action="GetAllDoctor">Specjaliści</a>
-                    </li>
-                    @if (!User.IsInRole("Admin") && !User.IsInRole("SuperAdmin"))
-                    {
-                        <li class="nav-item">
-                            <a class="nav-link" asp-controller="Reports" asp-action="Create">Kontakt</a>
-                        </li>
-                    }
-                    @if (User.IsInRole("Specialist"))
-                    {
-                        <li class="nav-item">
-                            <a class="nav-link" asp-controller="Experts" asp-action="PanelVisits">Wizyty</a>
-                        </li>
-                    }
-                    @if (User.IsInRole("Admin") || User.IsInRole("SuperAdmin"))
-                    {
-                        <div class="btn-group navbar-nav">
-                            <a class="nav-link nav-item dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Panel Administratora</a>
-                            <div class="nav-item dropdown-menu">
-                                <a class="nav-link" asp-controller="Users" asp-action="Index">Użytkownicy</a>
-                                <a class="nav-link" asp-controller="Reports" asp-action="List">Przeglądaj zgłoszenia</a>
-                                <a class="nav-link" asp-controller="Experts" asp-action="Index">Zarządzaj specialistami</a>
+    <header class="header">
+        <nav class="navbar navbar-expand-lg fixed-top navbar-light fixed-top mask-custom">
+            <div class="container">
+                <a class="navbar-brand" href="#home"><span style="color: #5e9693;">Psycho</span><span style="color: #999;">logist</span></a>
+                <button class="navbar-toggler" type="button" data-mdb-toggle="collapse"
+                        data-mdb-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                        aria-label="Toggle navigation">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div id="navbarSupportedContent" class="collapse navbar-collapse">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item"><a class="nav-link" href="#about">O Nas</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#kontakt">Kontakt</a></li>
+                        <li class="nav-item"><a class="nav-link" asp-area="" asp-controller="Experts" asp-action="GetAllDoctor">Zespół</a></li>
+
+                        @if (User.IsInRole("Specialist"))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link" asp-controller="Experts" asp-action="PanelVisits">Wizyty</a>
+                            </li>
+                        }
+                        @if (User.IsInRole("Admin") || User.IsInRole("SuperAdmin"))
+                        {
+                            <div class="btn-group navbar-nav">
+                                <a class="nav-link nav-item dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Panel Administratora</a>
+                                <div class="nav-item dropdown-menu">
+                                    <a class="nav-link" asp-controller="Users" asp-action="Index">Użytkownicy</a>
+                                    <a class="nav-link" asp-controller="Reports" asp-action="List">Przeglądaj zgłoszenia</a>
+                                    <a class="nav-link" asp-controller="Experts" asp-action="Index">Zarządzaj specialistami</a>
+                                </div>
                             </div>
-                        </div>
-                    }
-                </ul>
+                        }
+                    </ul>
+                </div>
+                <partial name="_loginPartial" />
             </div>
-            <partial name="_loginPartial" />
+        </nav>
+        <div class="container-fluid">
+            @RenderBody()
         </div>
-    </nav>
-    <div class="col-md-12">
-        @RenderBody()
-    </div>
-
-
-
-    <footer>
-        <div class="text-center p-3">
-            © 2020 Copyright:
-            &copy; 2023 - Web - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
-    </footer>
+    </header>
+   
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @RenderSection("Scripts", required: false)
 </body>
 </html>
+
+<script>
+    $(function () {
+        $(window).on('scroll', function () {
+            if ($(window).scrollTop() > 10) {
+                $('.navbar').addClass('active');
+                $('.dropdown-menu').addClass('add-white-color');
+            } else {
+                $('.navbar').removeClass('active');
+                $('.dropdown-menu').removeClass('add-white-color');
+                $('.dropdown-menu').removeClass('show');
+
+            }
+        });
+    });
+</script>

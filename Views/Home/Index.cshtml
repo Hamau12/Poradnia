@@ -1,13 +1,108 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
-
-<section>
+<section id="home">
     <!-- Intro -->
-    <div id="intro" class="bg-image vh-100" style="
-          background-image: url('https://mdbootstrap.com/img/Photos/new-templates/psychologist/img1.jpg');
-        ">
+    <div id="intro" class="bg-image custom-intro-image">
         <div class="mask" style="background-color: rgba(250, 182, 162, 0.15);"></div>
     </div>
     <!-- Intro -->
+</section>
+<section class="about-section text-center" id="about">
+    <div class="row gx-0 mb-5 mb-lg-0 justify-content-center">
+        <div class="col-lg-6"><img class="img-fluid" src="Images/AN-o-nas.png" alt="zespół" /></div>
+        <div class="col-lg-6">
+            <div class="bg-black text-center h-100 project">
+                <div class="d-flex h-100">
+                    <div class="project-text w-100 my-auto text-center text-lg-left">
+                        <h4 class="text-dark">Poradnia powstała z potrzeby udzielania wsparcia osobom</h4>
+                        <p class="text-black-50 mb-0" style="text-align: justify ">
+                            Poradnia powstała z potrzeby udzielania wsparcia osobom, które podczas życiowych burz zagubiły widok na bezpieczny ląd,
+                            a miotające nimi sztormy codzienności, nie pozwoliły dotrzeć do bezpiecznej przystani.To miejsce również dla tych,
+                            którym cień  przeszłości przysłania piękną rzeczywistość teraźniejszości i przyszłości, dla osób, które na skutek trudnych doświadczeń,
+                            wycofały się z aktywnego życia, przestały wierzyć, porzuciłymarzenia….
+                            Obserwując statystyki dotyczące kondycji psychicznej i emocjonalnej dzieci, młodzieży i dorosłych, postanowiliśmy połączyć siły i stworzyć miejsce.
+                            Jako grupa specjalistów: psychologów, psychoterapeutów, socjoterapeutów, trenerów psychoedukacji, profilaktyków, coachów– z różnych rejonów
+                            Polski, reprezentujących różne nurty terapeutyczne – chętnie podzielimy się wiedzą, doświadczeniem, pomożemy w poszukiwaniu utraconych lądów,
+                            a podczas spotkańobdarzymy strumieniami empatii…
+
+
+                            Nigdy nie jesteś sam! Pamiętaj o tym!
+                            Zapraszamy do kontaktu!.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="contact-section bg-black" id="kontakt">
+    <div class="container px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5">
+            <div class="col-md-4 mb-3 mb-md-0">
+                <div class="card py-4 h-100">
+                    <div class="card-body text-center">
+                        <i class="fas fa-envelope text-primary mb-2"></i>
+                        <h4 class="text-uppercase m-0">Email</h4>
+                        <hr class="my-4 mx-auto" />
+                        <div class="small text-black-50"><a>hello@yourdomain.com</a></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-3 mb-md-0">
+                <div class="card py-4 h-100">
+                    <div class="card-body text-center">
+                        <i class="fas fa-mobile-alt text-primary mb-2"></i>
+                        <h4 class="text-uppercase m-0">Phone</h4>
+                        <hr class="my-4 mx-auto" />
+                        <div class="small text-black-50">+1 (555) 902-8832</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-3 mb-md-0">
+                <div class="card py-4 h-100">
+                    <div class="card-body text-center">
+                        <i class="fas fa-hire-a-helper text-primary mb-2"></i>
+                        <h4 class="text-uppercase m-0">Zgłoszenia</h4>
+                        <hr class="my-4 mx-auto" />
+                        <div class="small text-black-50"><a class="text-black-50" asp-controller="Reports" asp-action="Create">Dodaj zgłoszenie</a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section id="footer">
+    <div class="footer">
+        <!-- Grid container -->
+        <div class="container p-1 pb-0">
+            <!-- Section: Social media -->
+            <!-- Facebook -->
+            <a class="btn btn-outline-dark btn-floating m-1" href="https://www.facebook.com/" role="button">
+                <i class="fab fa-facebook-f"></i>
+            </a>
+            <!-- Google -->
+            <a class="btn btn-outline-dark btn-floating m-1" href="https://www.google.com/" role="button">
+                <i class="fab fa-google"></i>
+            </a>
+            <!-- Instagram -->
+            <a class="btn btn-outline-dark btn-floating m-1" href="https://www.instagram.com/" role="button">
+                <i class="fab fa-instagram"></i>
+            </a>
+            <!-- Linkedin -->
+            <a class="btn btn-outline-dark btn-floating m-1" href="https://pl.linkedin.com/" role="button">
+                <i class="fab fa-linkedin-in"></i>
+            </a>
+            <!-- Github -->
+            <a class="btn btn-outline-dark btn-floating m-1" href="https://github.com/Hamau12/Poradnia/tree/Scheduler" role="button">
+                <i class="fab fa-github"></i>
+            </a>
+            <!-- Section: Social media -->
+        </div>
+        <div class="text-center p-4">
+            © 2020 Copyright:
+            <a class="text-white" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+        <!-- Copyright -->
+    </div>
 </section>

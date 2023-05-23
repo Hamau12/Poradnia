@@ -2,7 +2,7 @@
 @model IList<ReportDto>
 @{
     ViewBag.Title = "title";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/_LayoutToStaticPages.cshtml";
 }
 @if ((User.IsInRole("Admin") || User.IsInRole("SuperAdmin") || User.IsInRole("Specialist")))
 {

@@ -1,5 +1,6 @@
 ﻿@model IList<SRP.Models.DTOs.SRPUserDTO>
 @{
+    Layout = "~/Views/Shared/_LayoutToStaticPages.cshtml";
     ViewData["Title"] = "Użytkownicy niepotwierdzeni";
 }
 
@@ -18,14 +19,14 @@
     <tbody>
         @foreach (var userDto in Model)
         {
-        <tr>
-            <td>@userDto.FirstName</td>
-            <td>@userDto.LastName</td>
-            <td>@userDto.Email</td>
-            <td>
+            <tr>
+                <td>@userDto.FirstName</td>
+                <td>@userDto.LastName</td>
+                <td>@userDto.Email</td>
+                <td>
                     <a class="btn btn-outline-warning" asp-controller="Users" asp-action="Confirm" asp-route-id="@userDto.Id">Potwierdź użytkownika</a>
-            </td>
-        </tr>
+                </td>
+            </tr>
         }
     </tbody>
 </table>

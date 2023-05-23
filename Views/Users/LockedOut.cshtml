@@ -1,5 +1,6 @@
 ﻿@model IList<SRP.Models.DTOs.SRPUserDTO>
 @{
+    Layout = "~/Views/Shared/_LayoutToStaticPages.cshtml"; 
     ViewData["Title"] = "Użytkownicy zablokowani";
 }
 <partial name="_StatusMessage" model="@TempData["Message"]" />

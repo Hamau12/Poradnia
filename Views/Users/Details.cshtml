@@ -1,5 +1,7 @@
 ﻿@model SRP.Models.DTOs.SRPUserDTO
-
+@{
+    Layout = "~/Views/Shared/_LayoutToStaticPages.cshtml";
+}
 <div>
     <h4>Szczegóły</h4>
     <hr />
@@ -47,7 +49,7 @@
     else
     {
         <a class="btn btn-outline-warning" asp-controller="Users" asp-action="LockoutUser" asp-route-id="@Model.Id">Zablokuj</a>
-                                                                                                                  
+
     }
     @if (ViewData["PageNumber"] != null)
     {

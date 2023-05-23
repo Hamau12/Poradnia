@@ -21,12 +21,15 @@ namespace SRP.Controllers
         public IActionResult Index()
         {
             return View();
-        }       
+        }
         public IActionResult About()
         {
-            return View();
+            return View("Index");
         }
-
+        public IActionResult Contact()
+        {
+            return View("Index");
+        }
         public IActionResult Privacy()
         {
             return View();

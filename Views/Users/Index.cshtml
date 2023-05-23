@@ -3,8 +3,9 @@
 @using SRP.Models.Enums;
 @model PaginatedList<SRPUserDTO>
 @{
+    Layout = "~/Views/Shared/_LayoutToStaticPages.cshtml";
     ViewData["Title"] =
-    "Użytkownicy";
+ "Użytkownicy";
 }
 @{
     var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
@@ -20,16 +21,16 @@
             {
                 <li class="page-item @prevDisabled">
                     <a asp-action="Index"
-                   asp-route-pageNumber="1"
-                   class="btn btn-outline-warning">
+                       asp-route-pageNumber="1"
+                       class="btn btn-outline-warning">
                         &lt;&lt;
                     </a>
                 </li>
 
                 <li class="page-item">
                     <a asp-action="Index"
-                   asp-route-pageNumber="@(Model.PageNumber -1)"
-                   class="btn btn-outline-warning">
+                       asp-route-pageNumber="@(Model.PageNumber -1)"
+                       class="btn btn-outline-warning">
                         @(Model.PageNumber - 1)
                     </a>
                 </li>
@@ -45,8 +46,8 @@
             {
                 <li class="page-item">
                     <a asp-action="Index"
-                   asp-route-pageNumber="@(Model.PageNumber +1)"
-                   class="btn btn-outline-warning">
+                       asp-route-pageNumber="@(Model.PageNumber +1)"
+                       class="btn btn-outline-warning">
                         @(
                             Model.PageNumber + 1
                             )
@@ -55,8 +56,8 @@
 
                 <li class="page-item @nextDisabled">
                     <a asp-action="Index"
-                   asp-route-pageNumber="@Model.TotalPages"
-                   class="btn btn-outline-warning">
+                       asp-route-pageNumber="@Model.TotalPages"
+                       class="btn btn-outline-warning">
                         >>
                     </a>
                 </li>
@@ -152,4 +153,4 @@
             ManagerSearchBar.init();
         });
     </script>
-    }
+}

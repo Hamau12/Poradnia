@@ -1,6 +1,6 @@
 ﻿@model SRP.Models.GetUserWithRolesListVm
 @{
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/_LayoutToStaticPages.cshtml";
 }
 <h2>Uprawnienia dla: @Model.FirstName @Model.LastName - @Model.Username</h2>
 @if (Model.UserWithRoles.Count == 0)
