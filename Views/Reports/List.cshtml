@@ -81,7 +81,7 @@ else
                 @Model[i].Message
             </td>
             <td>
-                <a asp-action="Details" asp-controller="Reports" asp-route-id="@Model[i].Id" type="submit" class="btn btn-warning">Szczegóły</a>
+                    <a asp-action="Details" asp-controller="Reports" asp-route-id="@Model[i].Id" type="submit" class="btn btn-outline-dark m-1">Szczegóły</a>
             </td>
         </tr>
 
@@ -91,6 +91,6 @@ else
 </table>
 
 <div>
-    <a class="btn btn-warning " asp-action="List">Powrót</a>
+    <a class="btn btn-outline-dark m-1" asp-action="List">Powrót</a>
 </div>
 

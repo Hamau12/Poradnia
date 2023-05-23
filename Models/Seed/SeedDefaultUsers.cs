@@ -78,7 +78,7 @@ namespace SRP.Models.Seed
             var publishDocotr = new Specialist()
             {
                 Id = Guid.NewGuid(),
-                ImageName = "lstcxbigoiv.png",
+                ImageName = "fj1ifyrjhou.jpg",
                 UserId = doctorUser.Id,
                 FirstName= doctorUser.FirstName,
                 LastName= doctorUser.LastName,

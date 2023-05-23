@@ -40,24 +40,24 @@
 <div>
     @if (User.IsInRole("Admin") || User.IsInRole("SuperAdmin"))
     {
-        <a class="btn btn-outline-warning" asp-controller="Users" asp-action="ChangeRole" asp-route-id="@Model.Id">Zmień uprawnienia</a>
+        <a class="btn btn-outline-dark m-1" asp-controller="Users" asp-action="ChangeRole" asp-route-id="@Model.Id">Zmień uprawnienia</a>
     }
     @if (Model.IsLockedOut)
     {
-        <a class="btn btn-outline-warning" asp-controller="Users" asp-action="UnlockUser" asp-route-id="@Model.Id">Odblokuj</a>
+        <a class="btn btn-outline-dark m-1" asp-controller="Users" asp-action="UnlockUser" asp-route-id="@Model.Id">Odblokuj</a>
     }
     else
     {
-        <a class="btn btn-outline-warning" asp-controller="Users" asp-action="LockoutUser" asp-route-id="@Model.Id">Zablokuj</a>
+        <a class="btn btn-outline-dark m-1" asp-controller="Users" asp-action="LockoutUser" asp-route-id="@Model.Id">Zablokuj</a>
 
     }
     @if (ViewData["PageNumber"] != null)
     {
-        <a class="btn btn-outline-warning" asp-controller="Users" asp-action="Index" asp-route-pageNumber="@ViewData["PageNumber"]">Powrót</a>
+        <a class="btn btn-outline-dark m-1" asp-controller="Users" asp-action="Index" asp-route-pageNumber="@ViewData["PageNumber"]">Powrót</a>
     }
     else
     {
-        <a class="btn btn-outline-warning" asp-controller="Users" asp-action="Index">Powrót</a>
+        <a class="btn btn-outline-dark m-1" asp-controller="Users" asp-action="Index">Powrót</a>
 
     }
 </div>

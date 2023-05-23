@@ -22,7 +22,7 @@
                                 <span class="job_post">@doctor.Specialisation</span>
                                 <p>@doctor.Description</p>
                                 <div>
-                                    <a asp-route-parametr="@doctor.Id" class="btn btn-outline-dark m-1">Poznaj</a>
+                                    <a class="btn btn-outline-dark m-1" href="https://www.znanylekarz.pl/" role="button">Poznaj</a>
                                     <a asp-controller="Experts" asp-action="PatientsPanel" asp-route-parametr="@doctor.Id" class="btn btn-outline-dark m-1">Umów wizytę</a>
                                 </div>
                             </div>

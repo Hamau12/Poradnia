@@ -26,9 +26,8 @@
                 <div id="navbarSupportedContent" class="collapse navbar-collapse">
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item"><a class="nav-link" href="#about">O Nas</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#kontakt">Kontakt</a></li>
                         <li class="nav-item"><a class="nav-link" asp-area="" asp-controller="Experts" asp-action="GetAllDoctor">Zespół</a></li>
-
+                        <li class="nav-item"><a class="nav-link" href="#kontakt">Kontakt</a></li>
                         @if (User.IsInRole("Specialist"))
                         {
                             <li class="nav-item">
