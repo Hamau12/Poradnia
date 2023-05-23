@@ -11,6 +11,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection.Metadata;
 using System.Threading.Tasks;
 
 namespace SRP.Controllers
@@ -63,46 +64,55 @@ namespace SRP.Controllers
         [HttpPost]
         public async Task<IActionResult> PuplishDoctor(IFormFile formFile, Specialist newDoctor)
         {
-            if (formFile != null && (Path.GetExtension(formFile.FileName) == ".png" || Path.GetExtension(formFile.FileName) == ".jpg") || Path.GetExtension(formFile.FileName) == ".jpeg") ;
+            try
             {
-                var name = RenameFile(formFile.FileName, newDoctor.Id);
-                var mainPath = Path.Combine("wwwroot", "PImage");
-                var filePath = Path.Combine(mainPath, name);
-
-                if (!Directory.Exists(mainPath))
+                if (formFile != null && (Path.GetExtension(formFile.FileName) == ".png" || Path.GetExtension(formFile.FileName) == ".jpg") || Path.GetExtension(formFile.FileName) == ".jpeg") ;
                 {
-                    Directory.CreateDirectory(mainPath);
+                    var name = RenameFile(formFile.FileName, newDoctor.Id);
+                    var mainPath = Path.Combine("wwwroot", "Images", "Profil");
+                    var filePath = Path.Combine(mainPath, name);
+
+                    if (!Directory.Exists(mainPath))
+                    {
+                        Directory.CreateDirectory(mainPath);
+                    }
+                    await using (Stream stream = new FileStream(filePath, FileMode.Create))
+                    {
+                        await formFile.CopyToAsync(stream);
+                    }
+                    var user = await _userRepository.FindByIncludeAsync(x => x.Id == newDoctor.Id);
+                    var doctor = new Specialist
+                    {
+                        User = user,
+                        FirstName = user.FirstName,
+                        LastName = user.LastName,
+                        Description = newDoctor.Description,
+                        ImageName = name,
+                        Specialisation = newDoctor.Specialisation,
+                        Created = DateTime.Now,
+                        CreatedBy = _currentUserService.UserId
+                    };
+
+                    await _doctorRepository.AddAsync(doctor);
+                    user.IsDoctor = true;
+                    await _userRepository.UpdateAsync(user);
+
                 }
-                await using (Stream stream = new FileStream(filePath, FileMode.Create))
-                {
-                    await formFile.CopyToAsync(stream);
-                }
-                var user = await _userRepository.FindByIncludeAsync(x => x.Id == newDoctor.Id);
-                var doctor = new Specialist
-                {
-                    User = user,
-                    FirstName = user.FirstName,
-                    LastName = user.LastName,
-                    Description = newDoctor.Description,
-                    ImageName = name,
-                    Specialisation = newDoctor.Specialisation,
-                    Created = DateTime.Now,
-                    CreatedBy = _currentUserService.UserId
-                };
-
-                await _doctorRepository.AddAsync(doctor);
-                user.IsDoctor = true;
-                await _userRepository.UpdateAsync(user);
-
+                return RedirectToAction("Index");
             }
-            return RedirectToAction("Index");
+            catch
+            {
+                ViewData["error"] = "Nie dodano specialisty, czy o czmyś nie zapomniałeś?";
+                return RedirectToAction("Index");
+            }
+           
         }
         [Authorize(Roles = "Admin, SuperAdmin, Specialist")]
         public async Task<IActionResult> UnPuplishDoctor(Specialist Doctor)
         {
             var user = await _userRepository.FindByIncludeAsync(x => x.Id == Doctor.Id);
             var doctor = await _doctorRepository.FindByIncludeAsync(x => x.User == user);
-            var mainPath = Path.Combine("wwwroot", "PImage");
+            var mainPath = Path.Combine("wwwroot", "Images", "Profil");
             var filePath = Path.Combine(mainPath, doctor.ImageName);
             System.IO.File.Delete(filePath);
             await _doctorRepository.DeleteAsync(doctor);

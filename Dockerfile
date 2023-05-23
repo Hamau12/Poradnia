@@ -8,18 +8,14 @@ EXPOSE 443
 FROM mcr.microsoft.com/dotnet/sdk:3.1 AS build
 WORKDIR /src
 COPY ["Poradnia.csproj", "."]
-COPY ./wwwroot ./wwwroot
 RUN dotnet restore "./Poradnia.csproj"
-COPY . .
-COPY ./wwwroot ./wwwroot
-WORKDIR "/src/."
-RUN dotnet build "Poradnia.csproj" -c Release -o /app/build
+COPY . ./
+RUN dotnet build "Poradnia.csproj" -c Release -o /app
 
 FROM build AS publish
-RUN dotnet publish "Poradnia.csproj" -c Release -o /app/publish /p:UseAppHost=false
+RUN dotnet publish "/src/Poradnia.csproj" -c Release -o /app
 
 FROM base AS final
 WORKDIR /app
-COPY --from=publish /app/publish .
-COPY ./wwwroot ./wwwroot
+COPY --from=publish /app .
 ENTRYPOINT ["dotnet", "Poradnia.dll"]

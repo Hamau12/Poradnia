@@ -28,11 +28,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="wwwroot\PImage\" />
+    <None Include="wwwroot\lib\boxicons\.github\FUNDING.yml" />
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="wwwroot\lib\boxicons\.github\FUNDING.yml" />
+    <Folder Include="wwwroot\PImage\" />
   </ItemGroup>
 
 </Project>
