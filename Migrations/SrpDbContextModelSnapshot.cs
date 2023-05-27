@@ -265,14 +265,14 @@ namespace Poradnia.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("de08257e-8ffd-4c10-8312-8b77a3d21164"),
+                            Id = new Guid("9f9f9761-55a1-4404-89c8-8ac86ba18350"),
                             AppointmentId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Description = "Lekarz testowy",
                             FirstName = "Jan",
                             ImageName = "fj1ifyrjhou.jpg",
                             LastName = "Doktor",
                             Specialisation = 0,
-                            UserId = new Guid("a4b0be1b-67cc-4db3-8e39-3412a4852f6e")
+                            UserId = new Guid("cc4d9a8e-3b50-4adf-a6b5-1de863ed76da")
                         });
                 });
 
@@ -306,29 +306,29 @@ namespace Poradnia.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("2ac783eb-a6e7-48d4-b722-eb496c9d9958"),
-                            ConcurrencyStamp = "a4ec28ad-23c4-4fd9-84f7-6b885b69e391",
+                            Id = new Guid("7e14a5bc-508f-48b2-8866-911314262b20"),
+                            ConcurrencyStamp = "8b2305a0-42e6-4659-82d5-05e690bff4d2",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = new Guid("01e95f47-754a-4c6b-8874-db00ce0679ec"),
-                            ConcurrencyStamp = "6ae45ef8-2a65-4644-a6cd-bbfb938ead76",
+                            Id = new Guid("705008d4-b1f9-44b4-8bd7-a52d498b298d"),
+                            ConcurrencyStamp = "5f89845f-1760-4582-acbf-45645e6f5b6e",
                             Name = "Specialist",
                             NormalizedName = "SPECIALIST"
                         },
                         new
                         {
-                            Id = new Guid("78f84a3e-974a-4b55-8a81-369def897bc8"),
-                            ConcurrencyStamp = "bae5fbc2-6513-4686-824d-fcc25c959599",
+                            Id = new Guid("50ea507f-e2c4-4518-8f10-044907c56629"),
+                            ConcurrencyStamp = "e5463516-dc4a-46c5-9cb0-e2b81436dbe6",
                             Name = "Unconfirmed",
                             NormalizedName = "UNCONFIRMED"
                         },
                         new
                         {
-                            Id = new Guid("8e4a6b0a-faed-4f3f-8085-bf69abd1cd6a"),
-                            ConcurrencyStamp = "4c007ef4-8045-4796-94cb-e87148d9c401",
+                            Id = new Guid("ec195a41-9305-4df2-a78f-dc1e502c6669"),
+                            ConcurrencyStamp = "39af8344-bd8d-47fc-af79-919d920b4c04",
                             Name = "SuperAdmin",
                             NormalizedName = "SUPERADMIN"
                         });
@@ -405,8 +405,8 @@ namespace Poradnia.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("b0d7a395-eb34-457c-a661-765a2017f6c2"),
-                            ConcurrencyStamp = "1af05829-0913-4c2b-a272-115f2fa1a2c2",
+                            Id = new Guid("dd994157-877b-4c03-8b47-8de88047b37f"),
+                            ConcurrencyStamp = "d725e46b-c054-4787-b804-7668d73db48b",
                             Email = "test@pl.pl",
                             EmailConfirmed = true,
                             FirstName = "Wojciech",
@@ -415,15 +415,15 @@ namespace Poradnia.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "TEST@PL.PL",
                             NormalizedUserName = "TEST@PL.PL",
-                            PasswordHash = "AQAAAAEAACcQAAAAEE5HmjcJRiaQRI2yIvt5F4X9rE6QAfQ/Yx6FNtNyiWKdeJA7VYduCqgqJDVLVCRT7g==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEE4gn2503Wm5ODM7/EzQk89gzpvP9r4pFKkDjTA1qxa6cZmmrsPTat+MLjD55QrJpA==",
                             PhoneNumberConfirmed = true,
-                            SecurityStamp = "d84c54ae-957f-439e-adfd-9c181b3b8853",
+                            SecurityStamp = "b7177dea-910d-43f6-a85a-90d3f6f5fb5d",
                             UserName = "TEST@PL.PL"
                         },
                         new
                         {
-                            Id = new Guid("a4b0be1b-67cc-4db3-8e39-3412a4852f6e"),
-                            ConcurrencyStamp = "7c1caaf3-32ca-4d8b-9ca6-be6f404ec035",
+                            Id = new Guid("cc4d9a8e-3b50-4adf-a6b5-1de863ed76da"),
+                            ConcurrencyStamp = "a297a8ed-baa4-4030-9b4a-9de080147c8a",
                             Email = "test2@pl.pl",
                             EmailConfirmed = true,
                             FirstName = "Jan",
@@ -432,9 +432,9 @@ namespace Poradnia.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "TEST2@PL.PL",
                             NormalizedUserName = "TEST2@PL.PL",
-                            PasswordHash = "AQAAAAEAACcQAAAAEKLxRA17IpGoznU9BSvB7PpvFo/YFWoEcE6B7W2BN9RmgtmLzE748OhAoZnecfqMCQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEMStkYjOwGKDdr2NzKwu/XK5MbhWe+C5pEbH0uFqMUtQBVe+BEmPUgq/oQf4pFx+Tw==",
                             PhoneNumberConfirmed = true,
-                            SecurityStamp = "5fa92ec5-bda3-42f7-a609-1ea69f73ec81",
+                            SecurityStamp = "8980509f-3a3c-43d3-953d-df50259807aa",
                             UserName = "TEST2@PL.PL"
                         });
                 });
@@ -456,13 +456,13 @@ namespace Poradnia.Migrations
                     b.HasData(
                         new
                         {
-                            UserId = new Guid("b0d7a395-eb34-457c-a661-765a2017f6c2"),
-                            RoleId = new Guid("8e4a6b0a-faed-4f3f-8085-bf69abd1cd6a")
+                            UserId = new Guid("dd994157-877b-4c03-8b47-8de88047b37f"),
+                            RoleId = new Guid("ec195a41-9305-4df2-a78f-dc1e502c6669")
                         },
                         new
                         {
-                            UserId = new Guid("a4b0be1b-67cc-4db3-8e39-3412a4852f6e"),
-                            RoleId = new Guid("01e95f47-754a-4c6b-8874-db00ce0679ec")
+                            UserId = new Guid("cc4d9a8e-3b50-4adf-a6b5-1de863ed76da"),
+                            RoleId = new Guid("705008d4-b1f9-44b4-8bd7-a52d498b298d")
                         });
                 });
 

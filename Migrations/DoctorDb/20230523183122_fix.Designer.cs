@@ -10,8 +10,8 @@ using Poradnia.Models;
 namespace Poradnia.Migrations.DoctorDb
 {
     [DbContext(typeof(Data.DoctorDbContext))]
-    [Migration("20230522152009_init")]
-    partial class init
+    [Migration("20230523183122_fix")]
+    partial class fix
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

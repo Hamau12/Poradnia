@@ -9,6 +9,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="wwwroot\PImage\**" />
+    <Content Remove="wwwroot\PImage\**" />
+    <EmbeddedResource Remove="wwwroot\PImage\**" />
+    <None Remove="wwwroot\PImage\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
     <PackageReference Include="Blazorise.Icons.Bootstrap" Version="1.2.3" />
     <PackageReference Include="bootstrap" Version="5.2.3" />
@@ -29,10 +36,6 @@
 
   <ItemGroup>
     <None Include="wwwroot\lib\boxicons\.github\FUNDING.yml" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="wwwroot\PImage\" />
   </ItemGroup>
 
 </Project>
