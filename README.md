@@ -1,4 +1,6 @@
 # Projekt System Rejestracji Pacjętów poradni psychologicznej.
+Dokumentacja: [Dokumentacja.pdf](https://github.com/Hamau12/Poradnia/files/11633098/Dokumentacja.pdf)
+
 Projekt można uruchoimić na dwa sposoby:
 1. lokalnie na komputerze przy użyciu VisualStudio, IIS Expres oraz lokalnej bazy danych MsSql
 2. Za pomocą dockera poprzez wywołanie stworzonego dockerfile oraz docker-compose
